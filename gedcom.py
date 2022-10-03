@@ -46,6 +46,17 @@ class Person:
         self.child = child
         self.spouse = spouse
 
+class Family:
+    def __init__(self, id, married, divorced, husbandId, husband, wifeId, wife, childrenIds):
+        self.id = id
+        self.married = married
+        self.divorced = divorced
+        self.husbandId = husbandId
+        self.husband = husband
+        self.wifeId = wifeId
+        self.wife = wife
+        self.childrenIds = childrenIds
+
 
 def personData():
     inputFile = open("output.txt", "r")
@@ -85,6 +96,18 @@ def getAge(birthdate):
     age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
     return age
 
+def familyData():
+    inputFile = open("output.txt", "r")
+    gedcom = inputFile.readlines()
+    inputFile.close()
+    family = []
+    lineNum = 0
+    for line in gedcom:
+        x = line.split("|")
+        if x[1] == "FAM":
+            family.append(Family(x[3], "NA", "NA", "", "", "", "", []))
+
+    return family
 
 def getDeathAge(deathdate, birthdate):
     age = deathdate.year - birthdate.year - ((deathdate.month, deathdate.day) < (birthdate.month, birthdate.day))
@@ -104,3 +127,8 @@ for person in people:
     x.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
 print("Individuals")
 print(x)
+
+y = PrettyTable()
+y.field_names["ID", "MARRIED", "DIVORCED", "HUSBAND-ID", "WIFE-ID", "WIFE-NAME", "CHILDREN"]
+print("familIES")
+print(y)
