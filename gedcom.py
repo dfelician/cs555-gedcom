@@ -105,7 +105,23 @@ def familyData():
     for line in gedcom:
         x = line.split("|")
         if x[1] == "FAM":
-            family.append(Family(x[3], "NA", "NA", "", "", "", "", []))
+            family.append(Family(x[3].replace("@", ""), "NA", "NA", "", "", "", "", []))
+        elif x[1] == "HUSB":
+            family[-1].husbandId = x[3].replace("@", "")
+        elif x[1] == "WIFE":
+            family[-1].wifeId = x[3].replace("@", "")
+        elif x[1] == "MARR":
+            marriedDate = gedcom[lineNum + 1].split("|")[3].strip()
+            family[-1].married = datetime.strptime(marriedDate, "%d %b %Y").date()
+        elif x[1] == "DIV":
+            divorcedDate = gedcom[lineNum + 1].split("|")[3].strip()
+            family[-1].divorced = datetime.strptime(divorcedDate, "%d %b %Y").date()
+            print(divorcedDate)
+        elif x[1] == "CHIL":
+            family[-1].childrenIds.append(x[3].strip().replace("@", ""))
+        lineNum += 1
+
+
 
     return family
 
@@ -116,6 +132,7 @@ def getDeathAge(deathdate, birthdate):
 
 gedcomData()
 people = personData()
+families = familyData()
 
 x = PrettyTable()
 x.field_names=["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
@@ -129,6 +146,21 @@ print("Individuals")
 print(x)
 
 y = PrettyTable()
-y.field_names["ID", "MARRIED", "DIVORCED", "HUSBAND-ID", "WIFE-ID", "WIFE-NAME", "CHILDREN"]
-print("familIES")
+y.field_names=["ID", "MARRIED", "DIVORCED", "HUSBAND ID","HUSBAND NAME", "WIFE ID", "WIFE NAME", "CHILDREN"]
+for family in families:
+    if len(family.childrenIds) == 0:
+        family.childrenIds = "NA"
+    for person in people:
+        if family.husbandId == person.id:
+            family.husband = person.name
+        if family.wifeId == person.id:
+            family.wife = person.name
+
+    y.add_row([family.id, family.married, family.divorced, family.husbandId, family.husband, family.wifeId, family.wife, family.childrenIds])
+
+out = open("tables.txt", "w")
+out.write("Individuals\n" + str(x) + "\nFamilies\n" + str(y))
+out.close()
+
+print("families")
 print(y)
