@@ -121,8 +121,6 @@ def familyData():
             family[-1].childrenIds.append(x[3].strip().replace("@", ""))
         lineNum += 1
 
-
-
     return family
 
 def getDeathAge(deathdate, birthdate):
