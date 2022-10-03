@@ -56,7 +56,7 @@ def personData():
     for line in gedcom:
         x = line.split("|")
         if x[1] == "INDI":
-            people.append(Person(x[3], "", "", "", 0, True, "NA", [], []))
+            people.append(Person(x[3].replace("@", ""), "", "", "", 0, True, "NA", [], []))
         elif x[1] == "NAME" and x[0] == "1":
             people[-1].name = x[3]
         elif x[1] == "BIRT":
@@ -69,10 +69,16 @@ def personData():
             deathDate = gedcom[lineNum + 1].split("|")[3].strip()
             toDate = datetime.strptime(deathDate, "%d %b %Y").date()
             people[-1].death = toDate
+            people[-1].age = getDeathAge(people[-1].death, people[-1].birthday)
         elif x[1] == "SEX":
             people[-1].gender = x[3]
+        elif x[1] == "FAMC":
+            people[-1].child.append(x[3].strip().replace("@", ""))
+        elif x[1] == "FAMS":
+            people[-1].spouse.append(x[3].strip().replace("@", ""))
         lineNum += 1
     return people
+
 
 def getAge(birthdate):
     today = date.today()
@@ -80,12 +86,21 @@ def getAge(birthdate):
     return age
 
 
+def getDeathAge(deathdate, birthdate):
+    age = deathdate.year - birthdate.year - ((deathdate.month, deathdate.day) < (birthdate.month, birthdate.day))
+    return age
+
+
 gedcomData()
 people = personData()
 
 x = PrettyTable()
-x.field_names=["ID", "NAME", "GENDER", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+x.field_names=["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
 for person in people:
+    if len(person.spouse) == 0:
+        person.spouse = "NA"
+    if len(person.child) == 0:
+        person.child = "NA"
     x.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
 print("Individuals")
 print(x)
