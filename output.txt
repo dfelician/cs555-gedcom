@@ -1,4 +1,4 @@
-0|NOTE|Y|David Felician
+0|NOTE|Y|Group 2 https://github.com/dfelician/cs555-gedcom David Felician Bhavin Mistry Lay Gandhi
 0|HEAD|Y
 1|SOUR|N|Family Echo
 2|WWW|N|http://www.familyecho.com/
@@ -118,7 +118,6 @@
 1|SEX|Y|M
 1|BIRT|Y
 2|DATE|Y|11 MAY 2002
-1|FAMS|Y|@F8@
 1|FAMC|Y|@F4@
 0|INDI|Y|@I12@
 1|NAME|Y|Courtney /Reynolds/
@@ -273,8 +272,4 @@
 2|PLAC|N|Wading River, NY
 1|_CURRENT|N|Y
 1|_PRIMARY|N|Y
-0|FAM|Y|@F8@
-1|HUSB|Y|@I11@
-1|_CURRENT|N|N
-1|_PRIMARY|N|N
 0|TRLR|Y
