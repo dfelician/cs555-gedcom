@@ -127,31 +127,11 @@ def getDeathAge(deathdate, birthdate):
     age = deathdate.year - birthdate.year - ((deathdate.month, deathdate.day) < (birthdate.month, birthdate.day))
     return age
 
-def isDateValid():
-    errorIndividuals = []
-    return errorIndividuals
-
-def isMarriageAfter14():
-    errorIndividuals = []
-    return errorIndividuals
-
-def errorData():
-    #create a collection of errored individuals or families
-    errors = []
-
-    #use methods to build the error collection
-    #US01
-    errors.append(isDateValid())
-    #US10
-    errors.append(isMarriageAfter14())
-
-    return errors
-
 
 gedcomData()
 people = personData()
 families = familyData()
-errors = errorData()
+
 
 x = PrettyTable()
 x.field_names=["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
@@ -183,3 +163,34 @@ out.close()
 
 print("families")
 print(y)
+
+
+
+#All Error checking happens after this line so we can re-use people and family collections for error checking
+
+
+def isDateValid():
+    errorIndividuals = []
+    return errorIndividuals
+
+def isMarriageAfter14():
+    errorIndividuals = []
+    return errorIndividuals
+
+def errorData():
+    #create a collection of errored individuals or families
+    errors = []
+
+    #use methods to build the error collection
+    #US01
+    errors.append(isDateValid())
+    #US10
+    errors.append(isMarriageAfter14())
+
+    return errors
+
+
+
+errors = errorData()
+
+#build the error table below here
