@@ -170,27 +170,61 @@ print(y)
 
 
 def isDateValid():
-    errorIndividuals = []
-    return errorIndividuals
+    errorStrings = []
+    currentDate = date.today()
+    
+    for individual in people:
+        if(individual.birthday.year > currentDate.year and individual.birthday.month > currentDate.month and individual.birthday.day > currentDate.day):
+            output = "Error: INDIVIDUAL: US01: " + individual.id + ": Birthday " + individual.birthday + " occurs in the future"
+            errorStrings.append(output)
+        
+        if(individual.death != "NA" and individual.death.year > currentDate.year and individual.death.month > currentDate.month and individual.death.day > currentDate.day):
+            output = "Error: INDIVIDUAL: US01: " + individual.id + ": Death " + individual.death + " occurs in the future"
+            errorStrings.append(output)
+    
+    for fam in families:
+        if(fam.married.year > currentDate.year and fam.married.month > currentDate.month and fam.married.day > currentDate.day):
+            output = "Error: Family: US01: " + fam.id + ": Marriage date " + fam.married + " occurs in the future"
+            errorStrings.append(output)
+        if(fam.divorced != "NA" and fam.divorced.year > currentDate.year and fam.divorced.month > currentDate.month and fam.divorced.day > currentDate.day):
+            output = "Error: Family: US01: " + fam.id + ": Divorce date " + fam.divorced + " occurs in the future"
+            errorStrings.append(output)
+    
+    return errorStrings
 
 def isMarriageAfter14():
-    errorIndividuals = []
-    return errorIndividuals
+    errorStrings = []
+
+    for fam in families:
+        marriageDate = fam.married
+        husbandId = fam.husbandId
+        wifeId = fam.wifeId
+        
+        for individual in people:
+            if(individual.id == husbandId and marriageDate.year - individual.birthday.year < 14):
+                output = "Error: Family: US10: " + fam.id + ": Husband Birthdate " + individual.birthday + " is less than 14 years of Marriage Date " + marriageDate
+                errorStrings.append(output)
+            if(individual.id == wifeId and marriageDate.year - individual.birthday.year < 14):
+                output = "Error: Family: US10: " + fam.id + ": Wife Birthdate " + individual.birthday + " is less than 14 years of Marriage Date " + marriageDate
+                errorStrings.append(output)
+
+    return errorStrings
 
 def errorData():
-    #create a collection of errored individuals or families
-    errors = []
+    #create a list of errored strings
+    allErrors = []
 
-    #use methods to build the error collection
+    #use methods to add onto the list of error strings
     #US01
-    errors.append(isDateValid())
+    allErrors + isDateValid()
     #US10
-    errors.append(isMarriageAfter14())
+    allErrors + isMarriageAfter14()
 
-    return errors
-
+    return allErrors
 
 
 errors = errorData()
 
-#build the error table below here
+#output the list of error strings below here
+for error in errors:
+    print(error)
