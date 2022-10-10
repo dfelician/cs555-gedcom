@@ -20,7 +20,7 @@ def main():
     y = tables.familiesTable()
     deathTable = tables.deathTable()
     out = open("tables.txt", "w")
-    out.write("Individuals\n" + str(x) + "\nFamilies\n" + str(y) + "\nDeaths\n" + str(deathTable))
+    out.write("Individuals\n" + str(x) + "\nFamilies\n" + str(y) + "\nDeaths - US 29\n" + str(deathTable))
     out.close()
 
 
