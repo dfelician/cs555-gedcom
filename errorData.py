@@ -1,4 +1,5 @@
 import lay
+import bhavin
 
 
 def errorData():
@@ -10,5 +11,7 @@ def errorData():
     allErrors.extend(lay.isDateValid())
     # US10
     allErrors.extend(lay.isMarriageAfter14())
+
+    allErrors.extend(bhavin.isIdUnique())
 
     return allErrors

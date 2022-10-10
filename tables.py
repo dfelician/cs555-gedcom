@@ -35,3 +35,17 @@ def familiesTable():
              family.childrenIds])
 
     return y
+
+def deathTable():
+    people = data.personData()
+    deathTable = PrettyTable()
+    deathTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+    for person in people:
+        if person.alive != True:
+            if len(person.spouse) == 0:
+                person.spouse = "NA"
+            if len(person.child) == 0:
+                person.child = "NA"
+            deathTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death,
+                    person.child, person.spouse])
+    return deathTable
