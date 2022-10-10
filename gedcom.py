@@ -9,6 +9,7 @@ def main():
     data.gedcomData()
     print(tables.individualsTable())
     print(tables.familiesTable())
+#    print(tables.recentBirthsTable())
 
     errors = errorData.errorData()
     # output the list of error strings below here
@@ -18,7 +19,12 @@ def main():
     x = tables.individualsTable()
     y = tables.familiesTable()
     out = open("tables.txt", "w")
-    out.write("Individuals\n" + str(x) + "\nFamilies\n" + str(y))
+    out.write(str(x) + "\n" + str(y))
+    out.close()
+
+    z = tables.recentBirthsTable()
+    out = open("recentBirths.txt", "w")
+    out.write(str(z))
     out.close()
 
 

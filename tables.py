@@ -1,10 +1,12 @@
 from prettytable import PrettyTable
 import data
+import david
 
 
 def individualsTable():
     people = data.personData()
     x = PrettyTable()
+    x.title = "Individuals"
     x.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
     for person in people:
         if len(person.spouse) == 0:
@@ -20,6 +22,7 @@ def familiesTable():
     families = data.familyData()
     people = data.personData()
     y = PrettyTable()
+    y.title = "Families"
     y.field_names = ["ID", "MARRIED", "DIVORCED", "HUSBAND ID", "HUSBAND NAME", "WIFE ID", "WIFE NAME", "CHILDREN"]
     for family in families:
         if len(family.childrenIds) == 0:
@@ -35,3 +38,15 @@ def familiesTable():
              family.childrenIds])
 
     return y
+
+
+# US 35
+def recentBirthsTable():
+    recentBirths = david.getRecentBirths()
+    z = PrettyTable()
+    z.title = "Recent Births"
+    z.field_names = ["ID", "Name", "Birthday"]
+    for person in recentBirths:
+        z.add_row([person.id, person.name, person.birthday])
+    return z
+# End of US 35

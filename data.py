@@ -57,6 +57,7 @@ def personData():
             people.append(Person(x[3].replace("@", ""), "", "", "", 0, True, "NA", [], []))
         elif x[1] == "NAME" and x[0] == "1":
             people[-1].name = x[3]
+# US 27
         elif x[1] == "BIRT":
             birthdate = gedcom[lineNum + 1].split("|")[3].strip()
             toDate = datetime.strptime(birthdate, "%d %b %Y").date()
@@ -68,6 +69,7 @@ def personData():
             toDate = datetime.strptime(deathDate, "%d %b %Y").date()
             people[-1].death = toDate
             people[-1].age = utils.getDeathAge(people[-1].death, people[-1].birthday)
+# END of US 27
         elif x[1] == "SEX":
             people[-1].gender = x[3]
         elif x[1] == "FAMC":
