@@ -10,6 +10,7 @@ def main():
     print(tables.individualsTable())
     print(tables.familiesTable())
     print(tables.deathTable())
+#    print(tables.recentBirthsTable())
 
     errors = errorData.errorData()
     # output the list of error strings below here
@@ -20,7 +21,16 @@ def main():
     y = tables.familiesTable()
     deathTable = tables.deathTable()
     out = open("tables.txt", "w")
-    out.write("Individuals\n" + str(x) + "\nFamilies\n" + str(y) + "\nDeaths - US 29\n" + str(deathTable))
+    out.write(str(x) + "\n" + str(y))
+    out.close()
+
+    z = tables.recentBirthsTable()
+    out = open("recentBirths.txt", "w")
+    out.write(str(z))
+    out.close()
+
+    out = open("deathsTable.txt", "w")
+    out.write("Deaths - US 29\n" + str(deathTable))
     out.close()
 
 
