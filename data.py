@@ -71,7 +71,7 @@ def personData():
             people[-1].age = utils.getDeathAge(people[-1].death, people[-1].birthday)
 # END of US 27
         elif x[1] == "SEX":
-            people[-1].gender = x[3]
+            people[-1].gender = x[3].strip()
         elif x[1] == "FAMC":
             people[-1].child.append(x[3].strip().replace("@", ""))
         elif x[1] == "FAMS":
