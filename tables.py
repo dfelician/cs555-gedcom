@@ -57,6 +57,7 @@ def deathTable():
     # people = data.personData()
     deaths = bhavin.getDeaths()
     deathTable = PrettyTable()
+    deathTable.title = "Deceased - US29"
     deathTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
     for person in deaths:
         if len(person.spouse) == 0:

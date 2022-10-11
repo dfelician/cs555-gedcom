@@ -56,7 +56,7 @@ def personData():
         if x[1] == "INDI":
             people.append(Person(x[3].replace("@", ""), "", "", "", 0, True, "NA", [], []))
         elif x[1] == "NAME" and x[0] == "1":
-            people[-1].name = x[3]
+            people[-1].name = x[3].strip()
 # US 27
         elif x[1] == "BIRT":
             birthdate = gedcom[lineNum + 1].split("|")[3].strip()
