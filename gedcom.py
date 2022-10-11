@@ -30,7 +30,7 @@ def main():
     out.close()
 
     out = open("deathsTable.txt", "w")
-    out.write("Deaths - US 29\n" + str(deathTable))
+    out.write(str(deathTable))
     out.close()
 
 
