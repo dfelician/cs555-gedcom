@@ -9,25 +9,21 @@ def isDateValid():
     families = data.familyData()
 
     for individual in people:
-        if (
-                individual.birthday.year > currentDate.year and individual.birthday.month > currentDate.month and individual.birthday.day > currentDate.day):
+
+        if (individual.birthday > currentDate):
             output = "Error: INDIVIDUAL: US01: " + individual.id + ": Birthday " + str(
                 individual.birthday) + " occurs in the future"
             errorStrings.append(output)
 
-        if (
-                individual.death != "NA" and individual.death.year > currentDate.year and individual.death.month > currentDate.month and individual.death.day > currentDate.day):
-            output = "Error: INDIVIDUAL: US01: " + individual.id + ": Death " + str(
-                individual.death) + " occurs in the future"
+        if (individual.death != "NA" and individual.death > currentDate):
+            output = "Error: INDIVIDUAL: US01: " + individual.id + ": Death " + str(individual.death) + " occurs in the future"
             errorStrings.append(output)
 
     for fam in families:
-        if (
-                fam.married.year > currentDate.year and fam.married.month > currentDate.month and fam.married.day > currentDate.day):
+        if (fam.married > currentDate):
             output = "Error: Family: US01: " + fam.id + ": Marriage date " + str(fam.married) + " occurs in the future"
             errorStrings.append(output)
-        if (
-                fam.divorced != "NA" and fam.divorced.year > currentDate.year and fam.divorced.month > currentDate.month and fam.divorced.day > currentDate.day):
+        if (fam.divorced != "NA" and fam.divorced > currentDate):
             output = "Error: Family: US01: " + fam.id + ": Divorce date " + str(fam.divorced) + " occurs in the future"
             errorStrings.append(output)
 
