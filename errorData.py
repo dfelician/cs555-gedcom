@@ -1,5 +1,6 @@
 import lay
 import bhavin
+import albert
 
 
 def errorData():
@@ -13,5 +14,9 @@ def errorData():
     allErrors.extend(lay.isMarriageAfter14())
 
     allErrors.extend(bhavin.isIdUnique())
+
+    allErrors.extend(albert.isMarriedBeforeDivorce())
+
+    allErrors.extend(albert.isBirthBeforeMarriage())
 
     return allErrors

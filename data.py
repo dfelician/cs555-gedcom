@@ -54,9 +54,9 @@ def personData():
     for line in gedcom:
         x = line.split("|")
         if x[1] == "INDI":
-            people.append(Person(x[3].replace("@", ""), "", "", "", 0, True, "NA", [], []))
+            people.append(Person(x[3].replace("@", "").strip(), "", "", "", 0, True, "NA", [], []))
         elif x[1] == "NAME" and x[0] == "1":
-            people[-1].name = x[3]
+            people[-1].name = x[3].strip()
 # US 27
         elif x[1] == "BIRT":
             birthdate = gedcom[lineNum + 1].split("|")[3].strip()
@@ -101,11 +101,11 @@ def familyData():
     for line in gedcom:
         x = line.split("|")
         if x[1] == "FAM":
-            family.append(Family(x[3].replace("@", ""), "NA", "NA", "", "", "", "", []))
+            family.append(Family(x[3].replace("@", "").strip(), "NA", "NA", "", "", "", "", []))
         elif x[1] == "HUSB":
-            family[-1].husbandId = x[3].replace("@", "")
+            family[-1].husbandId = x[3].replace("@", "").strip()
         elif x[1] == "WIFE":
-            family[-1].wifeId = x[3].replace("@", "")
+            family[-1].wifeId = x[3].replace("@", "").strip()
         elif x[1] == "MARR":
             marriedDate = gedcom[lineNum + 1].split("|")[3].strip()
             family[-1].married = datetime.strptime(marriedDate, "%d %b %Y").date()
