@@ -4,45 +4,25 @@
 |  ID |         Name        | Gender |  Birthday  | Age | Alive |   Death    | Child  |    Spouse    |
 +-----+---------------------+--------+------------+-----+-------+------------+--------+--------------+
 |  I1 |     Paul /Frick/    |   M    | 1940-05-05 |  70 | False | 2010-09-13 |   NA   |    ['F1']    |
-|     |                     |        |            |     |       |            |        |              |
 |  I2 |    Susan /Samson/   |   F    | 1942-03-08 |  80 |  True |     NA     |   NA   | ['F1', 'F2'] |
-|     |                     |        |            |     |       |            |        |              |
 |  I3 |    Latin /Wigley/   |   M    | 1942-02-07 |  80 |  True |     NA     |   NA   |    ['F2']    |
-|     |                     |        |            |     |       |            |        |              |
 |  I4 |   Paulette /Frick/  |   F    | 1972-09-08 |  50 |  True |     NA     | ['F1'] |    ['F3']    |
-|     |                     |        |            |     |       |            |        |              |
 |  I5 |   David /Felician/  |   M    | 1964-09-02 |  58 |  True |     NA     |   NA   |    ['F3']    |
-|     |                     |        |            |     |       |            |        |              |
 |  I6 |   Jennifer /Frick/  |   F    | 1976-06-04 |  46 |  True |     NA     | ['F1'] |    ['F4']    |
-|     |                     |        |            |     |       |            |        |              |
 |  I7 |     Paul /Frick/    |   M    | 1978-02-12 |  44 |  True |     NA     | ['F1'] | ['F5', 'F6'] |
-|     |                     |        |            |     |       |            |        |              |
 |  I8 |    Brian /Frick/    |   M    | 1980-04-06 |  42 |  True |     NA     | ['F1'] |    ['F7']    |
-|     |                     |        |            |     |       |            |        |              |
 |  I9 |   David /Felician/  |   M    | 1997-08-07 |  25 |  True |     NA     | ['F3'] |      NA      |
-|     |                     |        |            |     |       |            |        |              |
 | I10 |   Brian /Reynolds/  |   M    | 1972-05-05 |  50 |  True |     NA     |   NA   |    ['F4']    |
-|     |                     |        |            |     |       |            |        |              |
 | I11 |  Dillon /Reynolds/  |   M    | 2002-05-11 |  20 |  True |     NA     | ['F4'] |      NA      |
-|     |                     |        |            |     |       |            |        |              |
 | I12 | Courtney /Reynolds/ |   F    | 2005-05-21 |  17 |  True |     NA     | ['F4'] |      NA      |
-|     |                     |        |            |     |       |            |        |              |
 | I13 |   Tammy /Schaefer/  |   F    | 1978-07-06 |  44 |  True |     NA     |   NA   |    ['F6']    |
-|     |                     |        |            |     |       |            |        |              |
 | I14 |    Travis /Frick/   |   M    | 2007-11-03 |  14 |  True |     NA     | ['F6'] |      NA      |
-|     |                     |        |            |     |       |            |        |              |
 | I15 |    Kelly /Frick/    |   F    | 2010-10-08 |  12 |  True |     NA     | ['F6'] |      NA      |
-|     |                     |        |            |     |       |            |        |              |
 | I16 |  Dawn /Janiskawitz/ |   F    | 1982-11-11 |  39 |  True |     NA     |   NA   |    ['F7']    |
-|     |                     |        |            |     |       |            |        |              |
 | I17 |    Connor /Frick/   |   M    | 2014-04-11 |  8  |  True |     NA     | ['F7'] |      NA      |
-|     |                     |        |            |     |       |            |        |              |
 | I18 |    Hailey /Frick/   |   F    | 2011-06-04 |  11 |  True |     NA     | ['F7'] |      NA      |
-|     |                     |        |            |     |       |            |        |              |
 | I19 |  Isabella /Samson/  |   F    | 1980-05-03 |  42 |  True |     NA     |   NA   |    ['F5']    |
-|     |                     |        |            |     |       |            |        |              |
 | I20 |    Layla /Frick/    |   F    | 2022-09-30 |  0  |  True |     NA     | ['F5'] |      NA      |
-|     |                     |        |            |     |       |            |        |              |
 +-----+---------------------+--------+------------+-----+-------+------------+--------+--------------+
 +------------------------------------------------------------------------------------------------------------------------+
 |                                                        Families                                                        |
@@ -54,6 +34,7 @@
 | F3 | 1993-09-23 |     NA     |     I5     | David /Felician/ |    I4   |  Paulette /Frick/  |          ['I9']          |
 | F4 | 2000-04-06 |     NA     |    I10     | Brian /Reynolds/ |    I6   |  Jennifer /Frick/  |      ['I11', 'I12']      |
 | F5 | 2016-05-04 |     NA     |     I7     |   Paul /Frick/   |   I19   | Isabella /Samson/  |         ['I20']          |
+| F6 | 2005-08-03 | 2012-06-05 |     I7     |   Paul /Frick/   |   I13   |  Tammy /Schaefer/  |      ['I14', 'I15']      |
 | F6 | 2005-08-03 | 1900-06-05 |     I7     |   Paul /Frick/   |   I13   |  Tammy /Schaefer/  |      ['I14', 'I15']      |
 | F7 | 2009-05-07 |     NA     |     I8     |  Brian /Frick/   |   I16   | Dawn /Janiskawitz/ |      ['I17', 'I18']      |
 +----+------------+------------+------------+------------------+---------+--------------------+--------------------------+

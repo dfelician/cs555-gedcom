@@ -44,7 +44,7 @@ def familiesTable():
 def recentBirthsTable():
     recentBirths = david.getRecentBirths()
     z = PrettyTable()
-    z.title = "Recent Births"
+    z.title = "Recent Births - US 35"
     z.field_names = ["ID", "Name", "Birthday"]
     for person in recentBirths:
         z.add_row([person.id, person.name, person.birthday])
