@@ -19,7 +19,6 @@ def main():
 
     x = tables.individualsTable()
     y = tables.familiesTable()
-    deathTable = tables.deathTable()
     out = open("tables.txt", "w")
     out.write(str(x) + "\n" + str(y))
     out.close()
@@ -29,9 +28,15 @@ def main():
     out.write(str(z))
     out.close()
 
+    deathTable = tables.deathTable()
     out = open("deathsTable.txt", "w")
     out.write(str(deathTable))
     out.close()
+
+    singlesTable = tables.livingSingleTable()
+    out = open("livingSingleTable.txt", "w")
+    out.write(str(singlesTable))
+    out.close
 
 
 if __name__ == "__main__":
