@@ -20,3 +20,17 @@ def bornWithin30Days(birthday):
         return True
     return False
 # End of US 35
+
+
+# Sprint 2
+# US 31 - List living single
+def getLivingSingle():
+    people = data.personData()
+    livingSingle = []
+    for person in people:
+        if person.age > 30 and len(person.spouse) == 0:
+            livingSingle.append(person)
+    return livingSingle
+
+
+# End of US 31

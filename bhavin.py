@@ -28,3 +28,14 @@ def isIdUnique():
             errorStrings.append(output)
 
     return errorStrings
+
+def getDeaths():
+    people = data.personData()
+    death = []
+
+    for person in people:
+        if person.alive != True:
+            death.append(person)
+
+    
+    return death
