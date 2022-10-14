@@ -68,12 +68,12 @@ def isBirthBeforeParentsDeath():
                 wife = person
         for child in childrenProfiles:
             if wife.death != "NA" and child.birthday > wife.death:
-                output = "Error US09: Birth date of " + str(child.name) + "(" + str(child.id) + ") occurs before the death date of mother (" + str(wife.id) + ")"
+                output = "Error: FAMILY: US09: Birth date of " + str(child.name) + "(" + str(child.id) + ") occurs before the death date of mother (" + str(wife.id) + ")"
                 errorStrings.append(output)
             if husband.death != "NA":
                 num_months = (child.birthday.year - husband.death.year) * 12 + (child.birthday.month - husband.death.month)
                 if num_months > 9:
-                    output = "Error US09: Birth date of " + str(child.name) + "(" + str(child.id) + ") occurs more than 9 months after the death date of father (" + str(husband.id) + ")"
+                    output = "Error: FAMILY: US09: Birth date of " + str(child.name) + "(" + str(child.id) + ") occurs more than 9 months after the death date of father (" + str(husband.id) + ")"
                     errorStrings.append(output)
     return errorStrings
 
