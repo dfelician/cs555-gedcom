@@ -1,3 +1,4 @@
+from tkinter.font import families
 import data
 from datetime import date
 
@@ -21,10 +22,10 @@ def isDateValid():
 
     for fam in families:
         if (fam.married > currentDate):
-            output = "Error: Family: US01: " + fam.id + ": Marriage date " + str(fam.married) + " occurs in the future"
+            output = "Error: FAMILY: US01: " + fam.id + ": Marriage date " + str(fam.married) + " occurs in the future"
             errorStrings.append(output)
         if (fam.divorced != "NA" and fam.divorced > currentDate):
-            output = "Error: Family: US01: " + fam.id + ": Divorce date " + str(fam.divorced) + " occurs in the future"
+            output = "Error: FAMILY: US01: " + fam.id + ": Divorce date " + str(fam.divorced) + " occurs in the future"
             errorStrings.append(output)
 
     return errorStrings
@@ -42,12 +43,44 @@ def isMarriageAfter14():
 
         for individual in people:
             if (individual.id == husbandId and marriageDate.year - individual.birthday.year < 14):
-                output = "Error: Family: US10: " + fam.id + ": Husband Birthdate " + str(
+                output = "Error: FAMILY: US10: " + fam.id + ": Husband Birthdate " + str(
                     individual.birthday) + " is less than 14 years of Marriage Date " + str(marriageDate)
                 errorStrings.append(output)
             if (individual.id == wifeId and marriageDate.year - individual.birthday.year < 14):
-                output = "Error: Family: US10: " + fam.id + ": Wife Birthdate " + str(
+                output = "Error: FAMILY: US10: " + fam.id + ": Wife Birthdate " + str(
                     individual.birthday) + " is less than 14 years of Marriage Date " + str(marriageDate)
                 errorStrings.append(output)
 
     return errorStrings
+
+def multipleBirths():
+    errorStrings = []
+    families = data.familyData()
+    people = data.personData()
+    childrenIds = []
+    for fam in families:
+        if len(fam.childrenIds) > 5:
+            childrenIds = fam.childrenIds
+    
+            childrenBirthdays = []
+            for individual in people:
+                if individual.id in childrenIds:
+                    childrenBirthdays.append(individual.birthday)
+    
+            dateDic = {}
+
+            for birthday in childrenBirthdays:
+
+                if birthday not in dateDic:
+                    dateDic[birthday] = 1
+                else:
+                    dateDic[birthday] += 1
+            
+            for key in dateDic:
+                if dateDic[key] > 5:
+                    output = "Error: FAMILY: US14: " + fam.id + " More than 5 siblings are born at the same time"
+                    errorStrings.append(output)
+    
+    return errorStrings
+    
+

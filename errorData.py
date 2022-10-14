@@ -22,5 +22,7 @@ def errorData():
     allErrors.extend(albert.isBirthBeforeParentsDeath())
     #US06
     allErrors.extend(bhavin.divorceBeforeDeath())
+    #US14
+    allErrors.extend(lay.multipleBirths())
 
     return allErrors
