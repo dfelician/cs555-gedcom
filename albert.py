@@ -46,3 +46,36 @@ def isBirthBeforeMarriage():
                         output = "Anomoly US08: Birth date of " + str(person.name) + "(" + str(person.id) + ") occurs over 9 months after the divorce date of his parents in Family (" + str(fam.id) + ")"
                         errorStrings.append(output)
     return errorStrings
+
+def isBirthBeforeParentsDeath():
+    errorStrings = []
+    families = data.familyData()
+    people = data.personData()
+
+    for fam in families: 
+        childrenIds = fam.childrenIds
+        husbandId = fam.husbandId
+        wifeId = fam.wifeId
+        childrenProfiles = []
+        husband = "NA"
+        wife = "NA"
+        for person in people:
+            if person.id in childrenIds:
+                childrenProfiles.append(person)
+            if person.id == husbandId:
+                husband = person
+            if person.id == wifeId:
+                wife = person
+        for child in childrenProfiles:
+            if wife.death != "NA" and child.birthday > wife.death:
+                output = "Error US09: Birth date of " + str(child.name) + "(" + str(child.id) + ") occurs before the death date of mother (" + str(wife.id) + ")"
+                errorStrings.append(output)
+            if husband.death != "NA":
+                num_months = (child.birthday.year - husband.death.year) * 12 + (child.birthday.month - husband.death.month)
+                if num_months > 9:
+                    output = "Error US09: Birth date of " + str(child.name) + "(" + str(child.id) + ") occurs more than 9 months after the death date of father (" + str(husband.id) + ")"
+                    errorStrings.append(output)
+    return errorStrings
+
+def isSibilingSpacing():
+    return
