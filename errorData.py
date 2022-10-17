@@ -24,5 +24,7 @@ def errorData():
     allErrors.extend(bhavin.divorceBeforeDeath())
     #US14
     allErrors.extend(lay.multipleBirths())
+    #US05
+    allErrors.extend(bhavin.marriageBeforeDeath())
 
     return allErrors

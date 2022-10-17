@@ -1,3 +1,5 @@
+from pyexpat import ErrorString
+from tkinter.font import families
 import data
 
 def isIdUnique():
@@ -40,6 +42,25 @@ def getDeaths():
     
     return death
 
+#US 05 Marriage should occur before death of either spouse
+
+def marriageBeforeDeath():
+    people = data.personData()
+    families = data.familyData()
+    errorStrings = []
+
+    for fam in families:
+        wifeId = fam.wifeId
+        husbandId = fam.husbandId
+        marriedDate = fam.married
+        
+        for person in people:
+            if person.id == wifeId or person.id == husbandId:
+                if not person.alive and marriedDate > person.death:
+                    output = "Error: FAMILY: US05: Marriage occurs after death of spouse " + person.id +" Death Date " + str(person.death) + " Marriage Date: " + str(marriedDate)
+                    errorStrings.append(output)
+
+    return errorStrings
 
 #US 06
 
