@@ -49,6 +49,18 @@ class TestMethods(unittest.TestCase):
         for person in recentBirths:
             self.assertEqual(type(person), data.Person)
     
+    def test_US27isInt(self):
+        people = data.personData()
+        for person in people:
+            self.assertTrue(type(person.age), int)
+
+    def test_US31correctPerson(self):
+        singlePeople = david.getLivingSingle()
+        self.assertEqual(singlePeople[0].name, "Dillon /Reynolds/")
+    
+    def test_US36lessThan30Days(self):
+        self.assertTrue(david.diedWithin30Days(date(2022, 10, 10)))
+    
     #David - End
     
 
@@ -74,6 +86,27 @@ class TestMethods(unittest.TestCase):
         deaths = bhavin.getDeaths()
         for person in deaths:
             self.assertFalse(person.alive, "Should be False")
+    
+    def test_numberOfDivorceError(self):
+        divorceStrings = bhavin.divorceBeforeDeath()
+        self.assertEqual(len(divorceStrings), 0)
+
+    def test_typeOfDivorceError(self):
+        self.assertEqual(type(bhavin.divorceBeforeDeath()), list)
+
+    def test_numberOfMarriageError(self):
+        marriageStrings = bhavin.marriageBeforeDeath()
+        self.assertEqual(len(marriageStrings), 0)
+
+    def test_typeOfMarriageError(self):
+        self.assertEqual(type(bhavin.marriageBeforeDeath()), list)
+
+    def test_numberOfUniqueIdError(self):
+        uniqueIdStrings = bhavin.isIdUnique()
+        self.assertEqual(len(uniqueIdStrings), 0)
+    
+    def test_typeOfUniqueIdError(self):
+        self.assertEqual(type(bhavin.isIdUnique()), list)
 
     #Bhavin - End
     
