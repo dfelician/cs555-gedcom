@@ -34,3 +34,20 @@ def getLivingSingle():
 
 
 # End of US 31
+
+# US 36 - List recent deaths
+def getRecentDeaths():
+    people = data.personData()
+    recentDeaths = []
+    for person in people:
+        if not person.alive and diedWithin30Days(person.death):
+            recentDeaths.append(person)
+    return recentDeaths
+
+
+def diedWithin30Days(deathdate):
+    today = date.today()
+    dateDiff = today - deathdate
+    if dateDiff.days <= 30:
+        return True
+    return False
