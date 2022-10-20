@@ -24,5 +24,26 @@ class TestStringMethods(unittest.TestCase):
         for person in deaths:
             self.assertFalse(person.alive, "Should be False")
 
+    def test_numberOfDivorceError(self):
+        divorceStrings = bhavin.divorceBeforeDeath()
+        self.assertEqual(len(divorceStrings), 0)
+
+    def test_typeOfDivorceError(self):
+        self.assertEqual(type(bhavin.divorceBeforeDeath()), list)
+
+    def test_numberOfMarriageError(self):
+        marriageStrings = bhavin.marriageBeforeDeath()
+        self.assertEqual(len(marriageStrings), 0)
+
+    def test_typeOfMarriageError(self):
+        self.assertEqual(type(bhavin.marriageBeforeDeath()), list)
+
+    def test_numberOfUniqueIdError(self):
+        uniqueIdStrings = bhavin.isIdUnique()
+        self.assertEqual(len(uniqueIdStrings), 0)
+    
+    def test_typeOfUniqueIdError(self):
+        self.assertEqual(type(bhavin.isIdUnique()), list)
+
 if __name__ == '__main__':
     unittest.main() 
