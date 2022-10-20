@@ -1,5 +1,6 @@
 from tkinter.font import families
 import data
+import utils
 from datetime import date
 
 
@@ -83,4 +84,39 @@ def multipleBirths():
     
     return errorStrings
     
+def isParentsOld():
+    errorStrings = []
+    families = data.familyData()
+    people = data.personData()
+    childrenIds = []
+
+    for fam in families:
+        husbandId = fam.husbandId
+        wifeId = fam.wifeId
+        childrenIds = fam.childrenIds
+        husband = None
+        wife = None
+        childrenBirthdays = []
+
+
+        for person in people:
+            if husbandId == person.id:
+                husband = person
+            if wifeId == person.id:
+                wife = person
+
+        for person in people:
+            if person.id in childrenIds:
+                    childrenBirthdays.append(person.birthday)
+
+        for childBirth in childrenBirthdays:
+            # may need to relook into calculating age differences
+            if utils.getTimeDifference(wife.birthday, childBirth) > 60:
+                output = "Error: FAMILY: US12: " + fam.id + " Mother is greater than 60 years old, Mother id: " + wife.id
+                errorStrings.append(output)
+            if utils.getTimeDifference(husband.birthday, childBirth) > 80:
+                output = "Error: FAMILY: US12: " + fam.id + " Father is greater than 80 years old, Father id: " + husband.id
+
+    return errorStrings
+
 

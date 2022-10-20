@@ -13,3 +13,7 @@ def getDeathAge(deathdate, birthdate):
     return age
 
 # End of US27
+
+def getTimeDifference(endDate, startDate):
+    diff = endDate.year - startDate.year - ((endDate.month, endDate.day) < (startDate.month, startDate.day))
+    return diff
