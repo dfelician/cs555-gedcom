@@ -10,11 +10,14 @@ import lay
 class TestMethods(unittest.TestCase):
     #Albert
     def testBirthBeforeMarriage1(self):
-        self.assertEqual(len(albert.isBirthBeforeMarriage()), 2)
+        self.assertEqual(len(albert.isBirthBeforeMarriage()), 3)
 
     def testBirthBeforeMarriage2(self):
-        self.assertEqual(albert.isBirthBeforeMarriage(), ['Anomoly US08: Birth date of Travis /Frick/(I14) occurs over 9 months after the divorce date of his parents in Family (F6)', 
-        'Anomoly US08: Birth date of Kelly /Frick/(I15) occurs over 9 months after the divorce date of his parents in Family (F6)'])
+        self.assertEqual(albert.isBirthBeforeMarriage(), [
+        'Anomoly US08: Birth date of Courtney /Reynolds/(I12) occurs before the marriage date of his parents in Family (F4)', 
+        'Anomoly US08: Birth date of Travis /Frick/(I14) occurs over 9 months after the divorce date of his parents in Family (F6)',
+        'Anomoly US08: Birth date of Kelly /Frick/(I15) occurs over 9 months after the divorce date of his parents in Family (F6)'
+        ])
 
     def testBirthBeforeMarriage3(self):
         self.assertEqual(type(albert.isBirthBeforeMarriage()), list)
@@ -56,7 +59,7 @@ class TestMethods(unittest.TestCase):
 
     def test_US31correctPerson(self):
         singlePeople = david.getLivingSingle()
-        self.assertEqual(singlePeople[0].name, "Dillon /Reynolds/")
+        self.assertEqual(singlePeople[0].name, "Courtney /Reynolds/")
     
     def test_US36lessThan30Days(self):
         self.assertTrue(david.diedWithin30Days(date(2022, 10, 10)))
@@ -114,19 +117,19 @@ class TestMethods(unittest.TestCase):
 
     #Lay
     def test1_isDateValid(self):
-        self.assertEqual(len(lay.isDateValid()), 3)
+        self.assertEqual(len(lay.isDateValid()), 1)
 
     def test2_isDateValid(self):
-        self.assertEqual(lay.isDateValid()[0], "Error: INDIVIDUAL: US01: I1\n: Birthday 2025-05-05 occurs in the future")
+        self.assertEqual(lay.isDateValid()[0], "Error: INDIVIDUAL: US01: I8: Birthday 2050-04-06 occurs in the future")
 
     def test3_isDateValid(self):
         self.assertEqual(type(lay.isDateValid()), list)
 
     def test4_isDateValid(self):
-        self.assertEqual(lay.isDateValid()[1], "Error: INDIVIDUAL: US01: I3\n: Birthday 3000-02-07 occurs in the future")
+        self.assertEqual(lay.isDateValid()[0], "Error: INDIVIDUAL: US01: I8: Birthday 2050-04-06 occurs in the future")
 
     def test5_isDateValid(self):
-        self.assertIn("Error: INDIVIDUAL: US01: I8\n: Birthday 2050-04-06 occurs in the future" ,lay.isDateValid())
+        self.assertIn("Error: INDIVIDUAL: US01: I8: Birthday 2050-04-06 occurs in the future" ,lay.isDateValid())
     
     #Lay - End
 

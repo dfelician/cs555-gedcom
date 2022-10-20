@@ -16,7 +16,7 @@ def getRecentBirths():
 def bornWithin30Days(birthday):
     today = date.today()
     dateDiff = today - birthday
-    if dateDiff.days <= 30:
+    if dateDiff.days <= 30 and dateDiff.days >= 0:
         return True
     return False
 # End of US 35

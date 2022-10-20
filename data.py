@@ -3,7 +3,7 @@ import utils
 
 
 def gedcomData():
-    inputFile = open("gedcom-test.ged", "r")
+    inputFile = open("gedcom-test-cases.ged", "r")
     gedcom = inputFile.readlines()
     inputFile.close()
     out = open("output.txt", "w")
