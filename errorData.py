@@ -25,4 +25,7 @@ def errorData():
     #US14
     allErrors.extend(lay.multipleBirths())
 
+    #US12
+    allErrors.extend(lay.isParentsOld())
+
     return allErrors
