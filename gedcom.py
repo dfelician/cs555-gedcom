@@ -36,7 +36,12 @@ def main():
     singlesTable = tables.livingSingleTable()
     out = open("livingSingleTable.txt", "w")
     out.write(str(singlesTable))
-    out.close
+    out.close()
+
+    recentDeathsTable = tables.recentDeathsTable()
+    out = open("recentDeaths.txt", "w")
+    out.write(str(recentDeathsTable))
+    out.close()
 
 
 if __name__ == "__main__":
