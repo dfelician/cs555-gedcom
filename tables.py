@@ -80,3 +80,17 @@ def livingSingleTable():
             person.child = "NA"
         singleTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
     return singleTable
+
+
+def recentDeathsTable():
+    recentDeaths = david.getRecentDeaths()
+    recentDeathsTble = PrettyTable()
+    recentDeathsTble.title = "Recent Deaths - US 36"
+    recentDeathsTble.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+    for person in recentDeaths:
+        if len(person.spouse) == 0:
+            person.spouse = "NA"
+        if len(person.child) == 0:
+            person.child = "NA"
+        recentDeathsTble.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
+    return recentDeathsTble
