@@ -18,8 +18,10 @@ def errorData():
     allErrors.extend(albert.isMarriedBeforeDivorce())
 
     allErrors.extend(albert.isBirthBeforeMarriage())
-    # US09
+    #US09
     allErrors.extend(albert.isBirthBeforeParentsDeath())
+    #US13
+    allErrors.extend(albert.isSibilingSpacing())
     #US06
     allErrors.extend(bhavin.divorceBeforeDeath())
     #US14
