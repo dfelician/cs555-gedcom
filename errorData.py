@@ -27,4 +27,7 @@ def errorData():
     #US05
     allErrors.extend(bhavin.marriageBeforeDeath())
 
+    #US12
+    allErrors.extend(lay.isParentsOld())
+
     return allErrors
