@@ -112,28 +112,28 @@ class TestMethods(unittest.TestCase):
 
 
     #Lay
-    def US1test1_isDateValid(self):
+    def test_US1_isDateValid(self):
         self.assertEqual(len(lay.isDateValid()), 1)
 
-    def US1test2_isDateValid(self):
-        self.assertEqual(lay.isDateValid()[0], "Error: INDIVIDUAL: US01: I8: Birthday 2050-04-06 occurs in the future")
+    def test_US1_test2_isDateValid(self):
+        self.assertEqual(lay.isDateValid()[0], "Error: INDIVIDUAL: US01: I10: Birthday 2050-04-06 occurs in the future")
 
-    def US1test3_isDateValid(self):
+    def test_US_1test3_isDateValid(self):
         self.assertEqual(type(lay.isDateValid()), list)
 
-    def US1test4_isDateValid(self):
-        self.assertEqual(lay.isDateValid()[0], "Error: INDIVIDUAL: US01: I8: Birthday 2050-04-06 occurs in the future")
+    def test_US1_test4_isDateValid(self):
+        self.assertEqual(lay.isDateValid()[0], "Error: INDIVIDUAL: US01: I10: Birthday 2050-04-06 occurs in the future")
 
-    def US1test5_isDateValid(self):
-        self.assertIn("Error: INDIVIDUAL: US01: I8: Birthday 2050-04-06 occurs in the future" ,lay.isDateValid())
+    def test_US1_test5_isDateValid(self):
+        self.assertIn("Error: INDIVIDUAL: US01: I10: Birthday 2050-04-06 occurs in the future" ,lay.isDateValid())
     
-    def US10_marriageAfter14(self):
+    def test_US10_marriageAfter14(self):
         self.assertIn("Error: FAMILY: US10: F8: Husband Birthdate 2009-01-01 is less than 14 years of Marriage Date 2022-10-24", lay.isMarriageAfter14())
 
-    def US12_parentsOld(self):
+    def test_US12_parentsOld(self):
         self.assertIn("Error: FAMILY: US12: F8 Mother is greater than 60 years old, Mother id: I22", lay.isParentsOld())
 
-    def US14_multipleBirths(self):
+    def test_US14_multipleBirths(self):
         self.assertIn("Error: FAMILY: US14: F8 More than 5 siblings are born at the same time", lay.multipleBirths())
 
 
