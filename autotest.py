@@ -74,15 +74,15 @@ class TestMethods(unittest.TestCase):
 
     #Bhavin
     def test_oneDeath(self):
-        self.assertEqual(len(bhavin.getDeaths()), 1, "should be 1 death")
+        self.assertEqual(len(bhavin.getDeaths()), 3, "should be 3 death")
 
     def test_nameOfDeceased(self):
         self.assertEqual(bhavin.getDeaths()[0].name, "Paul /Frick/", "Paul /Frick/")
         
     def test_checkIfNameExists(self):
         deaths = bhavin.getDeaths()
-        for person in deaths:
-            self.assertIn("Paul", person.name)
+        # for person in deaths:
+        self.assertIn("Paul", deaths[0].name)
 
     def test_checkIfNameDoesNotExists(self):
         deaths = bhavin.getDeaths()
@@ -96,24 +96,16 @@ class TestMethods(unittest.TestCase):
     
     def test_numberOfDivorceError(self):
         divorceStrings = bhavin.divorceBeforeDeath()
-        self.assertEqual(len(divorceStrings), 0)
-
-    def test_typeOfDivorceError(self):
-        self.assertEqual(type(bhavin.divorceBeforeDeath()), list)
+        self.assertIn("Error: FAMILY: US06: Divorce occurs after death of spouse I29 Death Date 2004-07-15 Divorce Date: 2009-10-07", divorceStrings)
 
     def test_numberOfMarriageError(self):
         marriageStrings = bhavin.marriageBeforeDeath()
-        self.assertEqual(len(marriageStrings), 0)
-
-    def test_typeOfMarriageError(self):
-        self.assertEqual(type(bhavin.marriageBeforeDeath()), list)
+        self.assertIn("Error: FAMILY: US05: Marriage occurs after death of spouse I30 Death Date 1968-01-27 Marriage Date: 1969-12-15", marriageStrings)
 
     def test_numberOfUniqueIdError(self):
         uniqueIdStrings = bhavin.isIdUnique()
-        self.assertEqual(len(uniqueIdStrings), 0)
+        self.assertIn("Error: INDIVIDUAL: US22: I30 is not a unique ID", uniqueIdStrings)
     
-    def test_typeOfUniqueIdError(self):
-        self.assertEqual(type(bhavin.isIdUnique()), list)
 
     #Bhavin - End
     
