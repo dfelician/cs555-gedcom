@@ -2,14 +2,14 @@
 0 HEAD
 1 SOUR Family Echo
 2 WWW http://www.familyecho.com/
-1 FILE My Family
-1 DATE 17 SEP 2022
+1 FILE Test Case Gedcom
+1 DATE 24 OCT 2022
 1 DEST ANSTFILE
 1 GEDC
 2 VERS 5.5.1
 2 FORM LINEAGE-LINKED
-1 SUBM @I1@
-2 NAME nyislanders7@gmail.com
+1 SUBM @I12@
+2 NAME lgandhi@stevens.edu
 1 SUBN
 1 CHAR UTF-8
 0 @I1@ INDI
@@ -72,6 +72,15 @@
 1 FAMS @F4@
 1 FAMC @F1@
 0 @I7@ INDI
+1 NAME Brian /Reynolds/
+2 GIVN Brian
+2 SURN Reynolds
+2 _MARNM Reynolds
+1 SEX M
+1 BIRT
+2 DATE 5 MAY 1972
+1 FAMS @F4@
+0 @I8@ INDI
 1 NAME Paul /Frick/
 2 GIVN Paul
 2 SURN Frick
@@ -82,7 +91,16 @@
 1 FAMS @F5@
 1 FAMS @F6@
 1 FAMC @F1@
-0 @I8@ INDI
+0 @I9@ INDI
+1 NAME Isabella /Samson/
+2 GIVN Isabella
+2 SURN Samson
+2 _MARNM Frick
+1 SEX F
+1 BIRT
+2 DATE 3 MAY 1980
+1 FAMS @F5@
+0 @I10@ INDI
 1 NAME Brian /Frick/
 2 GIVN Brian
 2 SURN Frick
@@ -92,70 +110,7 @@
 2 DATE 6 APR 2050
 1 FAMS @F7@
 1 FAMC @F1@
-0 @I9@ INDI
-1 NAME David /Felician/
-2 GIVN David
-2 SURN Felician
-2 _MARNM Felician
-1 SEX M
-1 BIRT
-2 DATE 7 AUG 1997
-1 FAMC @F3@
-0 @I10@ INDI
-1 NAME Brian /Reynolds/
-2 GIVN Brian
-2 SURN Reynolds
-2 _MARNM Reynolds
-1 SEX M
-1 BIRT
-2 DATE 5 MAY 1972
-1 FAMS @F4@
 0 @I11@ INDI
-1 NAME Dillon /Reynolds/
-2 GIVN Dillon
-2 SURN Reynolds
-2 _MARNM Reynolds
-1 SEX M
-1 BIRT
-2 DATE 11 MAY 2002
-1 FAMC @F4@
-0 @I12@ INDI
-1 NAME Courtney /Reynolds/
-2 GIVN Courtney
-2 SURN Reynolds
-2 _MARNM Reynolds
-1 SEX F
-1 BIRT
-2 DATE 21 MAY 1980
-1 FAMC @F4@
-0 @I13@ INDI
-1 NAME Tammy /Schaefer/
-2 GIVN Tammy
-2 SURN Schaefer
-2 _MARNM Frick
-1 SEX F
-1 BIRT
-2 DATE 6 JUL 1978
-1 FAMS @F6@
-0 @I14@ INDI
-1 NAME Travis /Frick/
-2 GIVN Travis
-2 SURN Frick
-2 _MARNM Frick
-1 SEX M
-1 BIRT
-2 DATE 3 NOV 2007
-1 FAMC @F6@
-0 @I15@ INDI
-1 NAME Kelly /Frick/
-2 GIVN Kelly
-2 SURN Frick
-2 _MARNM Frick
-1 SEX F
-1 BIRT
-2 DATE 8 OCT 2010
-1 FAMC @F6@
-0 @I16@ INDI
 1 NAME Dawn /Janiskawitz/
 2 GIVN Dawn
 2 SURN Janiskawitz
@@ -164,7 +119,61 @@
 1 BIRT
 2 DATE 11 NOV 1982
 1 FAMS @F7@
+0 @I12@ INDI
+1 NAME David /Felician/
+2 GIVN David
+2 SURN Felician
+2 _MARNM Felician
+1 SEX M
+1 BIRT
+2 DATE 7 AUG 1997
+1 FAMC @F3@
+0 @I13@ INDI
+1 NAME Dillon /Reynolds/
+2 GIVN Dillon
+2 SURN Reynolds
+2 _MARNM Reynolds
+1 SEX M
+1 BIRT
+2 DATE 11 MAY 2002
+1 FAMC @F4@
+0 @I14@ INDI
+1 NAME Courtney /Reynolds/
+2 GIVN Courtney
+2 SURN Reynolds
+2 _MARNM Reynolds
+1 SEX F
+1 BIRT
+2 DATE 21 MAY 1980
+1 FAMC @F4@
+0 @I15@ INDI
+1 NAME Tammy /Schaefer/
+2 GIVN Tammy
+2 SURN Schaefer
+2 _MARNM Frick
+1 SEX F
+1 BIRT
+2 DATE 6 JUL 1978
+1 FAMS @F6@
+0 @I16@ INDI
+1 NAME Travis /Frick/
+2 GIVN Travis
+2 SURN Frick
+2 _MARNM Frick
+1 SEX M
+1 BIRT
+2 DATE 3 NOV 2007
+1 FAMC @F6@
 0 @I17@ INDI
+1 NAME Kelly /Frick/
+2 GIVN Kelly
+2 SURN Frick
+2 _MARNM Frick
+1 SEX F
+1 BIRT
+2 DATE 8 OCT 2010
+1 FAMC @F6@
+0 @I18@ INDI
 1 NAME Connor /Frick/
 2 GIVN Connor
 2 SURN Frick
@@ -173,7 +182,7 @@
 1 BIRT
 2 DATE 11 APR 2014
 1 FAMC @F7@
-0 @I18@ INDI
+0 @I19@ INDI
 1 NAME Hailey /Frick/
 2 GIVN Hailey
 2 SURN Frick
@@ -182,15 +191,6 @@
 1 BIRT
 2 DATE 4 JUN 2011
 1 FAMC @F7@
-0 @I19@ INDI
-1 NAME Isabella /Samson/
-2 GIVN Isabella
-2 SURN Samson
-2 _MARNM Frick
-1 SEX F
-1 BIRT
-2 DATE 3 MAY 1980
-1 FAMS @F5@
 0 @I20@ INDI
 1 NAME Layla /Frick/
 2 GIVN Layla
@@ -200,13 +200,86 @@
 1 BIRT
 2 DATE 30 SEP 2022
 1 FAMC @F5@
+0 @I21@ INDI
+1 NAME Nathan /Wigley/
+2 GIVN Nathan
+2 SURN Wigley
+2 _MARNM Drake
+1 SEX M
+1 BIRT
+2 DATE 1 JAN 2009
+1 FAMS @F8@
+1 FAMC @F2@
+0 @I22@ INDI
+1 NAME Elena /Francis/
+2 GIVN Elena
+2 SURN Francis
+2 _MARNM Drake
+1 SEX F
+1 BIRT
+2 DATE 1 JAN 1850
+1 FAMS @F8@
+0 @I23@ INDI
+1 NAME Francis /Drake/
+2 GIVN Francis
+2 SURN Drake
+2 _MARNM Drake
+1 SEX M
+1 BIRT
+2 DATE 1 JAN 2022
+1 FAMC @F8@
+0 @I24@ INDI
+1 NAME Sully /Drake/
+2 GIVN Sully
+2 SURN Drake
+2 _MARNM Drake
+1 SEX M
+1 BIRT
+2 DATE 1 JAN 2022
+1 FAMC @F8@
+0 @I25@ INDI
+1 NAME Chloe /Drake/
+2 GIVN Chloe
+2 SURN Drake
+2 _MARNM Drake
+1 SEX F
+1 BIRT
+2 DATE 1 JAN 2022
+1 FAMC @F8@
+0 @I26@ INDI
+1 NAME Elenor /Drake/
+2 GIVN Elenor
+2 SURN Drake
+2 _MARNM Drake
+1 SEX F
+1 BIRT
+2 DATE 1 JAN 2022
+1 FAMC @F8@
+0 @I27@ INDI
+1 NAME Columbus /Drake/
+2 GIVN Columbus
+2 SURN Drake
+2 _MARNM Drake
+1 SEX M
+1 BIRT
+2 DATE 1 JAN 2022
+1 FAMC @F8@
+0 @I28@ INDI
+1 NAME Diamond /Drake/
+2 GIVN Diamond
+2 SURN Drake
+2 _MARNM Drake
+1 SEX F
+1 BIRT
+2 DATE 1 JAN 2022
+1 FAMC @F8@
 0 @F1@ FAM
 1 HUSB @I1@
 1 WIFE @I2@
 1 CHIL @I4@
 1 CHIL @I6@
-1 CHIL @I7@
 1 CHIL @I8@
+1 CHIL @I10@
 1 MARR
 2 DATE 3 MAY 1970
 2 PLAC Huntington, NY
@@ -217,6 +290,7 @@
 0 @F2@ FAM
 1 HUSB @I3@
 1 WIFE @I2@
+1 CHIL @I21@
 1 MARR
 2 DATE 8 MAY 2012
 2 PLAC Smithtown, NY
@@ -225,25 +299,25 @@
 0 @F3@ FAM
 1 HUSB @I5@
 1 WIFE @I4@
-1 CHIL @I9@
+1 CHIL @I12@
 1 MARR
 2 DATE 23 SEP 1993
 2 PLAC Northport, NY
 1 _CURRENT Y
 1 _PRIMARY Y
 0 @F4@ FAM
-1 HUSB @I10@
+1 HUSB @I7@
 1 WIFE @I6@
-1 CHIL @I11@
-1 CHIL @I12@
+1 CHIL @I13@
+1 CHIL @I14@
 1 MARR
 2 DATE 6 APR 2000
 2 PLAC Hauppauge, NY
 1 _CURRENT Y
 1 _PRIMARY Y
 0 @F5@ FAM
-1 HUSB @I7@
-1 WIFE @I19@
+1 HUSB @I8@
+1 WIFE @I9@
 1 CHIL @I20@
 1 MARR
 2 DATE 4 MAY 2016
@@ -251,10 +325,10 @@
 1 _CURRENT Y
 1 _PRIMARY Y
 0 @F6@ FAM
-1 HUSB @I7@
-1 WIFE @I13@
-1 CHIL @I14@
-1 CHIL @I15@
+1 HUSB @I8@
+1 WIFE @I15@
+1 CHIL @I16@
+1 CHIL @I17@
 1 MARR
 2 DATE 3 AUG 2005
 2 PLAC Riverhead, NY
@@ -263,13 +337,26 @@
 1 _CURRENT N
 1 _PRIMARY N
 0 @F7@ FAM
-1 HUSB @I8@
-1 WIFE @I16@
-1 CHIL @I17@
+1 HUSB @I10@
+1 WIFE @I11@
 1 CHIL @I18@
+1 CHIL @I19@
 1 MARR
 2 DATE 7 MAY 2009
 2 PLAC Wading River, NY
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F8@ FAM
+1 HUSB @I21@
+1 WIFE @I22@
+1 CHIL @I23@
+1 CHIL @I24@
+1 CHIL @I25@
+1 CHIL @I26@
+1 CHIL @I27@
+1 CHIL @I28@
+1 MARR
+2 DATE 24 OCT 2022
 1 _CURRENT Y
 1 _PRIMARY Y
 0 TRLR

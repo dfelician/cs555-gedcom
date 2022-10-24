@@ -22,7 +22,7 @@ def isDateValid():
             errorStrings.append(output)
 
     for fam in families:
-        if (fam.married > currentDate):
+        if (fam.married != "NA" and fam.married > currentDate):
             output = "Error: FAMILY: US01: " + fam.id + ": Marriage date " + str(fam.married) + " occurs in the future"
             errorStrings.append(output)
         if (fam.divorced != "NA" and fam.divorced > currentDate):
@@ -43,11 +43,11 @@ def isMarriageAfter14():
         wifeId = fam.wifeId
 
         for individual in people:
-            if (individual.id == husbandId and marriageDate.year - individual.birthday.year < 14):
+            if (marriageDate != "NA" and individual.id == husbandId and marriageDate.year - individual.birthday.year < 14):
                 output = "Error: FAMILY: US10: " + fam.id + ": Husband Birthdate " + str(
                     individual.birthday) + " is less than 14 years of Marriage Date " + str(marriageDate)
                 errorStrings.append(output)
-            if (individual.id == wifeId and marriageDate.year - individual.birthday.year < 14):
+            if (marriageDate != "NA" and individual.id == wifeId and marriageDate.year - individual.birthday.year < 14):
                 output = "Error: FAMILY: US10: " + fam.id + ": Wife Birthdate " + str(
                     individual.birthday) + " is less than 14 years of Marriage Date " + str(marriageDate)
                 errorStrings.append(output)
@@ -111,10 +111,10 @@ def isParentsOld():
 
         for childBirth in childrenBirthdays:
             # may need to relook into calculating age differences
-            if utils.getTimeDifference(wife.birthday, childBirth) > 60:
+            if utils.getTimeDifference(childBirth, wife.birthday) > 60:
                 output = "Error: FAMILY: US12: " + fam.id + " Mother is greater than 60 years old, Mother id: " + wife.id
                 errorStrings.append(output)
-            if utils.getTimeDifference(husband.birthday, childBirth) > 80:
+            if utils.getTimeDifference(childBirth, husband.birthday) > 80:
                 output = "Error: FAMILY: US12: " + fam.id + " Father is greater than 80 years old, Father id: " + husband.id
 
     return errorStrings

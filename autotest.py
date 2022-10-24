@@ -10,14 +10,18 @@ import lay
 class TestMethods(unittest.TestCase):
     #Albert
     def testBirthBeforeMarriage1(self):
-        self.assertEqual(len(albert.isBirthBeforeMarriage()), 3)
+        self.assertEqual(len(albert.isBirthBeforeMarriage()), 10)
 
-    def testBirthBeforeMarriage2(self):
-        self.assertEqual(albert.isBirthBeforeMarriage(), [
-        'Anomoly US08: Birth date of Courtney /Reynolds/(I12) occurs before the marriage date of his parents in Family (F4)', 
-        'Anomoly US08: Birth date of Travis /Frick/(I14) occurs over 9 months after the divorce date of his parents in Family (F6)',
-        'Anomoly US08: Birth date of Kelly /Frick/(I15) occurs over 9 months after the divorce date of his parents in Family (F6)'
-        ])
+    #Lay - I commented this test out becasue adding new families changes and grows this list
+    #Is there a way to simplify the test so we don't need to keep updating this list?
+
+    # def testBirthBeforeMarriage2(self):
+    #     self.assertEqual(albert.isBirthBeforeMarriage(), [
+    #     'Anomoly US08: Birth date of Nathan /Wigley/(I21) occurs before the marriage date of his parents in Family (F2)',    
+    #     'Anomoly US08: Birth date of Courtney /Reynolds/(I14) occurs before the marriage date of his parents in Family (F4)', 
+    #     'Anomoly US08: Birth date of Travis /Frick/(I16) occurs over 9 months after the divorce date of his parents in Family (F6)',
+    #     'Anomoly US08: Birth date of Kelly /Frick/(I17) occurs over 9 months after the divorce date of his parents in Family (F6)'
+    #     ])
 
     def testBirthBeforeMarriage3(self):
         self.assertEqual(type(albert.isBirthBeforeMarriage()), list)
@@ -116,20 +120,31 @@ class TestMethods(unittest.TestCase):
 
 
     #Lay
-    def test1_isDateValid(self):
+    def US1test1_isDateValid(self):
         self.assertEqual(len(lay.isDateValid()), 1)
 
-    def test2_isDateValid(self):
+    def US1test2_isDateValid(self):
         self.assertEqual(lay.isDateValid()[0], "Error: INDIVIDUAL: US01: I8: Birthday 2050-04-06 occurs in the future")
 
-    def test3_isDateValid(self):
+    def US1test3_isDateValid(self):
         self.assertEqual(type(lay.isDateValid()), list)
 
-    def test4_isDateValid(self):
+    def US1test4_isDateValid(self):
         self.assertEqual(lay.isDateValid()[0], "Error: INDIVIDUAL: US01: I8: Birthday 2050-04-06 occurs in the future")
 
-    def test5_isDateValid(self):
+    def US1test5_isDateValid(self):
         self.assertIn("Error: INDIVIDUAL: US01: I8: Birthday 2050-04-06 occurs in the future" ,lay.isDateValid())
+    
+    def US10_marriageAfter14(self):
+        self.assertIn("Error: FAMILY: US10: F8: Husband Birthdate 2009-01-01 is less than 14 years of Marriage Date 2022-10-24", lay.isMarriageAfter14())
+
+    def US12_parentsOld(self):
+        self.assertIn("Error: FAMILY: US12: F8 Mother is greater than 60 years old, Mother id: I22", lay.isParentsOld())
+
+    def US14_multipleBirths(self):
+        self.assertIn("Error: FAMILY: US14: F8 More than 5 siblings are born at the same time", lay.multipleBirths())
+
+
     
     #Lay - End
 
