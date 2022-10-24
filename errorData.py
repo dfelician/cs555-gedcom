@@ -28,7 +28,7 @@ def errorData():
     allErrors.extend(lay.multipleBirths())
     #US05
     allErrors.extend(bhavin.marriageBeforeDeath())
-
+    
     #US12
     allErrors.extend(lay.isParentsOld())
 

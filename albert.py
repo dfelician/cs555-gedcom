@@ -91,7 +91,7 @@ def isSibilingSpacing():
         if len(childrenProfiles) > 1:
             for index in range(1, len(childrenProfiles)):
                 if childrenProfiles[index-1].birthday.year == childrenProfiles[index].birthday.year:
-                    if abs(childrenProfiles[index-1].birthday.month - childrenProfiles[index].birthday.month) < 8 and (childrenProfiles[index-1].birthday - childrenProfiles[index].birthday).day > 2:
+                    if abs(childrenProfiles[index-1].birthday.month - childrenProfiles[index].birthday.month) < 8 and (childrenProfiles[index-1].birthday - childrenProfiles[index].birthday).days > 2:
                         output = "Error: FAMILY: US13: Birth date of " + str(childrenProfiles[index-1].name) + "(" + str(childrenProfiles[index-1].id) + ") is less than 8 months and more than 2 days apart from " + str(childrenProfiles[index].name) + "(" + str(childrenProfiles[index].name) + ")"
                         errorStrings.append(output)
 
