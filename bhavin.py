@@ -18,7 +18,6 @@ def isIdUnique():
             errorId = errorId.replace("\n", "")
             output = "Error: INDIVIDUAL: US22: " + errorId + " is not a unique ID"
             errorStrings.append(output)
-            print("Not unique")
 
     for i in range(1, len(families)):
         id = families[i-1].id
