@@ -10,18 +10,13 @@ import lay
 class TestMethods(unittest.TestCase):
     #Albert
     def testBirthBeforeMarriage1(self):
-        self.assertEqual(len(albert.isBirthBeforeMarriage()), 10)
+        self.assertEqual(len(albert.isBirthBeforeMarriage()), 11)
 
     #Lay - I commented this test out becasue adding new families changes and grows this list
     #Is there a way to simplify the test so we don't need to keep updating this list?
 
-    # def testBirthBeforeMarriage2(self):
-    #     self.assertEqual(albert.isBirthBeforeMarriage(), [
-    #     'Anomoly US08: Birth date of Nathan /Wigley/(I21) occurs before the marriage date of his parents in Family (F2)',    
-    #     'Anomoly US08: Birth date of Courtney /Reynolds/(I14) occurs before the marriage date of his parents in Family (F4)', 
-    #     'Anomoly US08: Birth date of Travis /Frick/(I16) occurs over 9 months after the divorce date of his parents in Family (F6)',
-    #     'Anomoly US08: Birth date of Kelly /Frick/(I17) occurs over 9 months after the divorce date of his parents in Family (F6)'
-    #     ])
+    def testBirthBeforeMarriage2(self):
+        self.assertIn("Anomoly US08: Birth date of Nathan /Wigley/(I21) occurs before the marriage date of his parents in Family (F2)", albert.isBirthBeforeMarriage())
 
     def testBirthBeforeMarriage3(self):
         self.assertEqual(type(albert.isBirthBeforeMarriage()), list)
@@ -33,6 +28,15 @@ class TestMethods(unittest.TestCase):
     def testBirthBeforeMarriage5(self):
         for msg in albert.isBirthBeforeMarriage():
             self.assertIsNot(msg, "")
+
+    def testIsMarriedBeforeDivorce(self):
+        self.assertEqual(len(albert.isMarriedBeforeDivorce()), 1)
+
+    def testIsBirthBeforeParentsDeath(self):
+        self.assertIn("Error: FAMILY: US09: Birth date of Brian /Frick/(I10) occurs more than 9 months after the death date of father (I1)", albert.isBirthBeforeParentsDeath())
+
+    def testIsSibilingSpacing(self):
+        self.assertIn("Error: FAMILY: US13: Birth date of Diamond /Drake/(I28) is less than 8 months and more than 2 days apart from Ruby /Drake/(Ruby /Drake/)", albert.isSibilingSpacing())
 
     #Albert - End
 
@@ -128,13 +132,13 @@ class TestMethods(unittest.TestCase):
         self.assertIn("Error: INDIVIDUAL: US01: I10: Birthday 2050-04-06 occurs in the future" ,lay.isDateValid())
     
     def test_US10_marriageAfter14(self):
-        self.assertIn("Error: FAMILY: US10: F8: Husband Birthdate 2009-01-01 is less than 14 years of Marriage Date 2022-10-24", lay.isMarriageAfter14())
+        self.assertIn("Error: FAMILY: US10: F8: Husband Birthdate 2050-04-06 is less than 14 years of Marriage Date 2009-05-07", lay.isMarriageAfter14())
 
     def test_US12_parentsOld(self):
-        self.assertIn("Error: FAMILY: US12: F8 Mother is greater than 60 years old, Mother id: I22", lay.isParentsOld())
+        self.assertIn("Error: FAMILY: US12: F9 Mother is greater than 60 years old, Mother id: I22", lay.isParentsOld())
 
     def test_US14_multipleBirths(self):
-        self.assertIn("Error: FAMILY: US14: F8 More than 5 siblings are born at the same time", lay.multipleBirths())
+        self.assertIn("Error: FAMILY: US14: F9 More than 5 siblings are born at the same time", lay.multipleBirths())
 
 
     
