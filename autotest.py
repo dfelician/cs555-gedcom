@@ -12,9 +12,6 @@ class TestMethods(unittest.TestCase):
     def testBirthBeforeMarriage1(self):
         self.assertEqual(len(albert.isBirthBeforeMarriage()), 11)
 
-    #Lay - I commented this test out becasue adding new families changes and grows this list
-    #Is there a way to simplify the test so we don't need to keep updating this list?
-
     def testBirthBeforeMarriage2(self):
         self.assertIn("Anomoly US08: Birth date of Nathan /Wigley/(I21) occurs before the marriage date of his parents in Family (F2)", albert.isBirthBeforeMarriage())
 
