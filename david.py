@@ -8,17 +8,10 @@ def getRecentBirths():
     people = data.personData()
     recentBirths = []
     for person in people:
-        if bornWithin30Days(person.birthday):
+        if isWithin30Days(person.birthday):
             recentBirths.append(person)
     return recentBirths
 
-
-def bornWithin30Days(birthday):
-    today = date.today()
-    dateDiff = today - birthday
-    if dateDiff.days <= 30 and dateDiff.days >= 0:
-        return True
-    return False
 # End of US 35
 
 
@@ -40,14 +33,14 @@ def getRecentDeaths():
     people = data.personData()
     recentDeaths = []
     for person in people:
-        if not person.alive and diedWithin30Days(person.death):
+        if not person.alive and isWithin30Days(person.death):
             recentDeaths.append(person)
     return recentDeaths
 
 
-def diedWithin30Days(deathdate):
+def isWithin30Days(day):
     today = date.today()
-    dateDiff = today - deathdate
-    if dateDiff.days <= 30:
+    dateDiff = today - day
+    if dateDiff.days <= 30 and dateDiff.days >= 0:
         return True
     return False
