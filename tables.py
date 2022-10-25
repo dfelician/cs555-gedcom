@@ -56,16 +56,16 @@ def recentBirthsTable():
 def deathTable():
     # people = data.personData()
     deaths = bhavin.getDeaths()
-    deathTable = PrettyTable()
-    deathTable.title = "Deceased - US29"
-    deathTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+    deathPrettyTable = PrettyTable()
+    deathPrettyTable.title = "Deceased - US29"
+    deathPrettyTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
     for person in deaths:
         if len(person.spouse) == 0:
             person.spouse = "NA"
         if len(person.child) == 0:
             person.child = "NA"
-        deathTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
-    return deathTable
+        deathPrettyTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
+    return deathPrettyTable
 
 
 def livingSingleTable():
