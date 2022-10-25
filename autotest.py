@@ -40,10 +40,10 @@ class TestMethods(unittest.TestCase):
 
     #David
     def test_lessThan30Days(self):
-        self.assertTrue(david.bornWithin30Days(date(2022, 9, 30)))
+        self.assertTrue(david.isWithin30Days(date(2022, 9, 30)))
 
     def test_moreThan30Days(self):
-        self.assertFalse(david.bornWithin30Days(date(2020, 10, 10)))
+        self.assertFalse(david.isWithin30Days(date(2020, 10, 10)))
 
     def test_correctNumberOfRecentBirths(self):
         self.assertEqual(len(david.getRecentBirths()), 1)
@@ -66,7 +66,7 @@ class TestMethods(unittest.TestCase):
         self.assertEqual(singlePeople[0].name, "Courtney /Reynolds/")
     
     def test_US36lessThan30Days(self):
-        self.assertTrue(david.diedWithin30Days(date(2022, 10, 10)))
+        self.assertTrue(david.isWithin30Days(date(2022, 10, 10)))
     
     #David - End
     
