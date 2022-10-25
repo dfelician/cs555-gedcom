@@ -4,31 +4,49 @@ import data
 
 def isIdUnique():
     errorStrings = []
-    peopleDuplicateId = []
-    familyDuplicateId = []
+    # peopleDuplicateId = []
+    # familyDuplicateId = []
 
     people = data.personData()
     families = data.familyData()
 
-    for i in range(1, len(people)):
-        id = people[i-1].id
-        if people[i].id == id:
-            peopleDuplicateId.append(people[i].id)
-            errorId = str(people[i].id)
-            errorId = errorId.replace("\n", "")
-            output = "Error: INDIVIDUAL: US22: " + errorId + " is not a unique ID"
-            errorStrings.append(output)
+    errorStrings.append(uniqueIdChecker(people, "INDIVIDUAL"))
+    errorStrings.append(uniqueIdChecker(families, "FAMILY"))
 
-    for i in range(1, len(families)):
-        id = families[i-1].id
-        if families[i].id == id:
-            familyDuplicateId.append(families[i].id)
-            errorId = str(people[i].id)
-            errorId = errorId.replace("\n", "")
-            output = "Error: FAMILY: US22: " + errorId + " is not a unique ID"
-            errorStrings.append(output)
+    # created a method to check the ID of both Individuals and familiy records, refactoring code below for US22
+    # 
+    # for i in range(1, len(people)):
+    #     id = people[i-1].id
+    #     if people[i].id == id:
+    #         peopleDuplicateId.append(people[i].id)
+    #         errorId = str(people[i].id)
+    #         errorId = errorId.replace("\n", "")
+    #         output = "Error: INDIVIDUAL: US22: " + errorId + " is not a unique ID"
+    #         errorStrings.append(output)
+
+    # for i in range(1, len(families)):
+    #     id = families[i-1].id
+    #     if families[i].id == id:
+    #         familyDuplicateId.append(families[i].id)
+    #         errorId = str(people[i].id)
+    #         errorId = errorId.replace("\n", "")
+    #         output = "Error: FAMILY: US22: " + errorId + " is not a unique ID"
+    #         errorStrings.append(output)
 
     return errorStrings
+
+def uniqueIdChecker(dataset, datasetType):
+    duplicateIdList = []
+    output = ""
+    for i in range(1, len(dataset)):
+        id = dataset[i-1].id
+        if dataset[i].id == id:
+            duplicateIdList.append(dataset[i].id)
+            errorId = str(dataset[i].id)
+            errorId = errorId.replace("\n", "")
+            output = "Error: " + datasetType + ": US22: " + errorId + " is not a unique ID"
+            
+    return output
 
 def getDeaths():
     people = data.personData()
