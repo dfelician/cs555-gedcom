@@ -114,9 +114,35 @@ def isParentsOld():
             if utils.getTimeDifference(childBirth, wife.birthday) > 60:
                 output = "Error: FAMILY: US12: " + fam.id + " Mother is greater than 60 years old, Mother id: " + wife.id
                 errorStrings.append(output)
+
             if utils.getTimeDifference(childBirth, husband.birthday) > 80:
                 output = "Error: FAMILY: US12: " + fam.id + " Father is greater than 80 years old, Father id: " + husband.id
+                errorStrings.append(output)
+            break
 
     return errorStrings
 
+def sameLastNameMale():
+    errorStrings = []
+    families = data.familyData()
+    people = data.personData()
+
+    for fam in families:
+        husbandId = fam.husbandId
+        husbandLastName = None
+        childrenIds = []
+        childrenIds = fam.childrenIds
+
+        for person in people:
+            if person.id == husbandId:
+                husbandLastName = person.name.split()[1][1:-1]
+        
+        for person in people:
+            if person.id in childrenIds and person.gender == 'M' and person.name.split()[1][1:-1] != husbandLastName:
+                output = "Error: FAMILY: US16: " + fam.id + " Not all male members of the family have the same last name of " + husbandLastName
+                errorStrings.append(output)
+                break
+
+    return errorStrings
+ 
 
