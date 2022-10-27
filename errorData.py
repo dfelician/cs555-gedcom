@@ -33,5 +33,7 @@ def errorData():
     allErrors.extend(lay.isParentsOld())
     #US16
     allErrors.extend(lay.sameLastNameMale())
+    #US21
+    allErrors.extend(lay.correctGenderRole())
 
     return allErrors

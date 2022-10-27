@@ -140,6 +140,8 @@ class TestMethods(unittest.TestCase):
     def test_US16_sameLastNameMale(self):
         self.assertIn("Error: FAMILY: US16: F9 Not all male members of the family have the same last name of Wigley", lay.sameLastNameMale())
     
+    def test_US21_correctGenderRole(self):
+        self.assertNotIn("Error", lay.correctGenderRole())
     #Lay - End
 
 
