@@ -144,5 +144,24 @@ def sameLastNameMale():
                 break
 
     return errorStrings
+
+def correctGenderRole():
+    errorStrings = []
+    families = data.familyData()
+    people = data.personData()
+
+    for fam in families:
+        husbandId = fam.husbandId
+        wifeId = fam.wifeId
+    
+        for person in people:
+            if person.id == husbandId and person.gender != 'M':
+                output = "Error: FAMILY: US21: " + fam.id + " Family Husband is not gender Male, Husband id: " + husbandId
+                errorStrings.append(output)
+            if person.id == wifeId and person.gender != 'F':
+                output = "Error: FAMILY: US21: " + fam.id + " Family Wife is not gender Female, Wife id: " + wifeId
+                errorStrings.append(output)
+        
+    return errorStrings
  
 
