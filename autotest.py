@@ -41,7 +41,7 @@ class TestMethods(unittest.TestCase):
 
     #David
     def test_lessThan30Days(self):
-        self.assertTrue(david.isWithin30Days(date(2022, 9, 30)))
+        self.assertTrue(david.isWithin30Days(date(2022, 10, 30)))
 
     def test_moreThan30Days(self):
         self.assertFalse(david.isWithin30Days(date(2020, 10, 10)))
