@@ -110,7 +110,7 @@ def lessThan15Siblings():
     for fam in families:
         numOfChildren = len(fam.childrenIds)
         if numOfChildren >= 15:
-            output = "Error: FAMILY: US15: There are more than 15 siblings in family " + str(fam.id)
+            output = "Error: FAMILY: US15: There are 15 or more siblings in family " + str(fam.id)
             errorStrings.append(output)
  
     return errorStrings
@@ -132,9 +132,10 @@ def siblingsShouldNotMarry():
         marriageDict[husbandId] = wifeId
 
     for fam in families:
-        if marriageDict.keys() in fam.childrenIds and marriageDict.values() in fam.childrenId():
-            output = "Error: FAMILY US18: Siblings should not marry each other"
-            errorStrings.append(output)
+        for key in marriageDict:
+            if key in fam.childrenIds and marriageDict[key] in fam.childrenIds:
+                output = "Error: FAMILY: US18: Siblings should not marry each other " + str(fam.id)
+                errorStrings.append(output)
     return errorStrings
 
 #US 18 
