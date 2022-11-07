@@ -41,7 +41,7 @@ class TestMethods(unittest.TestCase):
 
     #David
     def test_lessThan30Days(self):
-        self.assertTrue(david.isWithin30Days(date(2022, 9, 30)))
+        self.assertTrue(david.isWithin30Days(date(2022, 10, 30)))
 
     def test_moreThan30Days(self):
         self.assertFalse(david.isWithin30Days(date(2020, 10, 10)))
@@ -106,7 +106,14 @@ class TestMethods(unittest.TestCase):
     def test_numberOfUniqueIdError(self):
         uniqueIdStrings = bhavin.isIdUnique()
         self.assertIn("Error: INDIVIDUAL: US22: I30 is not a unique ID", uniqueIdStrings)
-    
+
+    def test_US15_lessThan15Siblings(self):
+        siblingStrings = bhavin.lessThan15Siblings()
+        self.assertIn("Error: FAMILY: US15: There are 15 or more siblings in family F9", siblingStrings)
+
+    def test_US18_siblingsShouldNotMarry(self):
+        siblingsMarriedStrings = bhavin.siblingsShouldNotMarry()
+        self.assertIn("Error: FAMILY: US18: Siblings should not marry each other F9", siblingsMarriedStrings)
 
     #Bhavin - End
     
@@ -137,8 +144,11 @@ class TestMethods(unittest.TestCase):
     def test_US14_multipleBirths(self):
         self.assertIn("Error: FAMILY: US14: F9 More than 5 siblings are born at the same time", lay.multipleBirths())
 
-
+    def test_US16_sameLastNameMale(self):
+        self.assertIn("Error: FAMILY: US16: F9 Not all male members of the family have the same last name of Wigley", lay.sameLastNameMale())
     
+    def test_US21_correctGenderRole(self):
+        self.assertNotIn("Error", lay.correctGenderRole())
     #Lay - End
 
 
