@@ -35,6 +35,11 @@ class TestMethods(unittest.TestCase):
     def testIsSibilingSpacing(self):
         self.assertIn("Error: FAMILY: US13: Birth date of Diamond /Drake/(I28) is less than 8 months and more than 2 days apart from Ruby /Drake/(Ruby /Drake/)", albert.isSibilingSpacing())
 
+    def testNonDescendentMarriage(self):
+        self.assertIn("Error: FAMILY: US17: Spouse cannot be a descendent of the family.", albert.nonDescendentMarriage())
+
+    def testIsUniqueFamilyBySpouse(self):
+        self.assertIn("Error: FAMILY: US24: Spouse I3 can not be in multiple families with the same marriage date.", albert.isUniqueFamilyBySpouse())
     #Albert - End
 
 
