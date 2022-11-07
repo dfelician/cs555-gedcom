@@ -1,6 +1,7 @@
 import lay
 import bhavin
 import albert
+import david
 
 
 def errorData():
@@ -31,5 +32,8 @@ def errorData():
     
     #US12
     allErrors.extend(lay.isParentsOld())
+
+    #US07
+    allErrors.extend(david.lessThen150())
 
     return allErrors
