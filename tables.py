@@ -44,28 +44,28 @@ def familiesTable():
 # US 35
 def recentBirthsTable():
     recentBirths = david.getRecentBirths()
-    z = PrettyTable()
-    z.title = "Recent Births - US 35"
-    z.field_names = ["ID", "Name", "Birthday"]
+    recentBirthsPTable = PrettyTable()
+    recentBirthsPTable.title = "Recent Births - US 35"
+    recentBirthsPTable.field_names = ["ID", "Name", "Birthday"]
     for person in recentBirths:
-        z.add_row([person.id, person.name, person.birthday])
-    return z
+        recentBirthsPTable.add_row([person.id, person.name, person.birthday])
+    return recentBirthsPTable
 # End of US 35
 
 
 def deathTable():
     # people = data.personData()
     deaths = bhavin.getDeaths()
-    deathTable = PrettyTable()
-    deathTable.title = "Deceased - US29"
-    deathTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+    deathPrettyTable = PrettyTable()
+    deathPrettyTable.title = "Deceased - US29"
+    deathPrettyTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
     for person in deaths:
         if len(person.spouse) == 0:
             person.spouse = "NA"
         if len(person.child) == 0:
             person.child = "NA"
-        deathTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
-    return deathTable
+        deathPrettyTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
+    return deathPrettyTable
 
 
 def livingSingleTable():
@@ -94,3 +94,23 @@ def recentDeathsTable():
             person.child = "NA"
         recentDeathsTble.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
     return recentDeathsTble
+
+
+def orderedSiblingsTable():
+    siblings = david.orderSiblingsByAge()
+    siblingsTables = []
+    for key, value in siblings.items():
+        table = PrettyTable()
+        table.title = key + " - Ordered Siblings"
+        table.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+        if value:
+            for person in value:
+                if len(person.spouse) == 0:
+                    person.spouse = "NA"
+                if len(person.child) == 0:
+                    person.child = "NA"
+                table.add_row(
+                    [person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death,
+                     person.child, person.spouse])
+            siblingsTables.append(table)
+    return siblingsTables

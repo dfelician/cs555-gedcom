@@ -8,17 +8,10 @@ def getRecentBirths():
     people = data.personData()
     recentBirths = []
     for person in people:
-        if bornWithin30Days(person.birthday):
+        if isWithin30Days(person.birthday):
             recentBirths.append(person)
     return recentBirths
 
-
-def bornWithin30Days(birthday):
-    today = date.today()
-    dateDiff = today - birthday
-    if dateDiff.days <= 30 and dateDiff.days >= 0:
-        return True
-    return False
 # End of US 35
 
 
@@ -40,14 +33,52 @@ def getRecentDeaths():
     people = data.personData()
     recentDeaths = []
     for person in people:
-        if not person.alive and diedWithin30Days(person.death):
+        if not person.alive and isWithin30Days(person.death):
             recentDeaths.append(person)
     return recentDeaths
 
 
-def diedWithin30Days(deathdate):
+def isWithin30Days(day):
     today = date.today()
-    dateDiff = today - deathdate
-    if dateDiff.days <= 30:
+    dateDiff = today - day
+    if dateDiff.days <= 30 and dateDiff.days >= 0:
         return True
     return False
+
+
+# US 07
+def lessThen150():
+    people = data.personData()
+    today = date.today()
+    errorStrings = []
+    for person in people:
+        if person.alive:
+            dateDiff = today.year - person.birthday.year
+            if dateDiff >= 150:
+                output = "Error: INDIVIDUAL: US07: " + person.id + " " + person.name + " birth is 150 years or more before today"
+                errorStrings.append(output)
+        if not person.alive:
+            dateDiff = person.death.year - person.birthday.year
+            if dateDiff >= 150:
+                output = "Error: INDIVIDUAL: US07: " + person.id + " " + person.name + " death is 150 years or more before birthday"
+                errorStrings.append(output)
+    return errorStrings
+
+
+# US 27
+def orderSiblingsByAge():
+    families = data.familyData()
+    people = data.personData()
+    familyDict = {}
+    for family in families:
+        children = []
+        key = family.id
+        for person in people:
+            if len(person.child) != 0 and person.child[0] == key:
+                children.append(person)
+        children.sort(key=lambda x: x.age, reverse=True)
+        familyDict[key] = children
+    return familyDict
+
+
+

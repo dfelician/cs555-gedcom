@@ -1,6 +1,7 @@
 import lay
 import bhavin
 import albert
+import david
 
 
 def errorData():
@@ -35,6 +36,18 @@ def errorData():
     
     #US12
     allErrors.extend(lay.isParentsOld())
+    #US16
+    allErrors.extend(lay.sameLastNameMale())
+    #US21
+    allErrors.extend(lay.correctGenderRole())
+
+    #US15
+    allErrors.extend(bhavin.lessThan15Siblings())
+    #US18
+    allErrors.extend(bhavin.siblingsShouldNotMarry())
+
+    #US07
+    allErrors.extend(david.lessThen150())
 
 
     return allErrors
