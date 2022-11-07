@@ -108,16 +108,30 @@ def isSibilingSpacing():
 def nonDescendentMarriage():
     errorStrings = []
     families = data.familyData()
-    people = data.personData()
-    personDict = {}
+    childDict = {}
 
-    for person in people:
-        personDict[person.id] = person
     for fam in families:
         childrenIds = fam.childrenIds
-        husband = personDict[fam.husbandId]
-        wife = personDict[fam.wifeId]
-        if husband in childrenIds or wife in childrenIds:
+        husbandId = fam.husbandId
+        wifeId = fam.wifeId
+        if husbandId in childDict:
+            for childId in childrenIds:
+                if childId not in childDict[husbandId]:
+                    childDict[husbandId].append(childId)
+        else:
+            childDict[husbandId] = childrenIds
+
+        if wifeId in childDict:
+            for childId in childrenIds:
+                if childId not in childDict[wifeId]:
+                    childDict[wifeId].append(childId)
+        else:
+            childDict[wifeId] = childrenIds
+    
+    for fam in families:
+        husbandId = fam.husbandId
+        wifeId = fam.wifeId
+        if husbandId in childDict[husbandId] or husbandId in childDict[wifeId] or wifeId in childDict[wifeId] or wifeId in childDict[husbandId]:
             output = "Error: FAMILY: US17: Spouse cannot be a descendent of the family."
             errorStrings.append(output)
         
