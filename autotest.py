@@ -68,7 +68,14 @@ class TestMethods(unittest.TestCase):
     
     def test_US36lessThan30Days(self):
         self.assertTrue(david.isWithin30Days(date(2022, 10, 10)))
-    
+
+    def test_US07lessThan150(self):
+        lessThen150Strings = david.lessThen150()
+        self.assertIn("Error: INDIVIDUAL: US07: I22 Elena /Francis/ birth is 150 years or more before today", lessThen150Strings)
+
+    def test_US27orderSiblingsByAge(self):
+        orderedSiblingsKey = list(david.orderSiblingsByAge())[0]
+        self.assertEqual("F1", orderedSiblingsKey)
     #David - End
     
 
