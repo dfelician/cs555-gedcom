@@ -10,7 +10,7 @@ import lay
 class TestMethods(unittest.TestCase):
     #Albert
     def testBirthBeforeMarriage1(self):
-        self.assertEqual(len(albert.isBirthBeforeMarriage()), 11)
+        self.assertEqual(len(albert.isBirthBeforeMarriage()), 19)
 
     def testBirthBeforeMarriage2(self):
         self.assertIn("Anomoly US08: Birth date of Nathan /Wigley/(I21) occurs before the marriage date of his parents in Family (F2)", albert.isBirthBeforeMarriage())
