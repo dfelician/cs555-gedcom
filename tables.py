@@ -94,3 +94,23 @@ def recentDeathsTable():
             person.child = "NA"
         recentDeathsTble.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
     return recentDeathsTble
+
+
+def orderedSiblingsTable():
+    siblings = david.orderSiblingsByAge()
+    siblingsTables = []
+    for key, value in siblings.items():
+        table = PrettyTable()
+        table.title = key + " - Ordered Siblings"
+        table.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+        if value:
+            for person in value:
+                if len(person.spouse) == 0:
+                    person.spouse = "NA"
+                if len(person.child) == 0:
+                    person.child = "NA"
+                table.add_row(
+                    [person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death,
+                     person.child, person.spouse])
+            siblingsTables.append(table)
+    return siblingsTables

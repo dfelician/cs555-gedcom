@@ -1,6 +1,7 @@
 import lay
 import bhavin
 import albert
+import david
 
 
 def errorData():
@@ -40,5 +41,8 @@ def errorData():
     allErrors.extend(bhavin.lessThan15Siblings())
     #US18
     allErrors.extend(bhavin.siblingsShouldNotMarry())
+
+    #US07
+    allErrors.extend(david.lessThen150())
 
     return allErrors

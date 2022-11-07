@@ -43,6 +43,12 @@ def main():
     out.write(str(recentDeathsTable))
     out.close()
 
+    siblingsTable = tables.orderedSiblingsTable()
+    out = open("orderedSiblingsTable.txt", "w")
+    for table in siblingsTable:
+        out.write(str(table) + "\n")
+    out.close()
+
 
 if __name__ == "__main__":
     main()
