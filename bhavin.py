@@ -79,7 +79,7 @@ def marriageBeforeDeath():
 
     return errorStrings
 
-#US 06
+#US 06 Divorce should occur before the death of either spouse
 
 def divorceBeforeDeath():
     people = data.personData()
@@ -98,3 +98,44 @@ def divorceBeforeDeath():
                         errorStrings.append(output)
 
     return errorStrings
+
+#End of US 06
+
+#US 15 There should be fewer than 15 siblings in a family
+
+def lessThan15Siblings():
+    families = data.familyData()
+    errorStrings = []
+
+    for fam in families:
+        numOfChildren = len(fam.childrenIds)
+        if numOfChildren >= 15:
+            output = "Error: FAMILY: US15: There are 15 or more siblings in family " + str(fam.id)
+            errorStrings.append(output)
+ 
+    return errorStrings
+
+
+#End of US 15 
+
+#US 18 Siblings should not marry one another
+
+def siblingsShouldNotMarry():
+    families = data.familyData()
+    errorStrings = []
+
+    marriageDict = {}
+
+    for fam in families:
+        husbandId = fam.husbandId
+        wifeId = fam.wifeId
+        marriageDict[husbandId] = wifeId
+
+    for fam in families:
+        for key in marriageDict:
+            if key in fam.childrenIds and marriageDict[key] in fam.childrenIds:
+                output = "Error: FAMILY: US18: Siblings should not marry each other " + str(fam.id)
+                errorStrings.append(output)
+    return errorStrings
+
+#US 18 

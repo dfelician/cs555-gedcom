@@ -106,7 +106,14 @@ class TestMethods(unittest.TestCase):
     def test_numberOfUniqueIdError(self):
         uniqueIdStrings = bhavin.isIdUnique()
         self.assertIn("Error: INDIVIDUAL: US22: I30 is not a unique ID", uniqueIdStrings)
-    
+
+    def test_US15_lessThan15Siblings(self):
+        siblingStrings = bhavin.lessThan15Siblings()
+        self.assertIn("Error: FAMILY: US15: There are 15 or more siblings in family F9", siblingStrings)
+
+    def test_US18_siblingsShouldNotMarry(self):
+        siblingsMarriedStrings = bhavin.siblingsShouldNotMarry()
+        self.assertIn("Error: FAMILY: US18: Siblings should not marry each other F9", siblingsMarriedStrings)
 
     #Bhavin - End
     

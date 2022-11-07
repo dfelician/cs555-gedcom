@@ -36,4 +36,9 @@ def errorData():
     #US21
     allErrors.extend(lay.correctGenderRole())
 
+    #US15
+    allErrors.extend(bhavin.lessThan15Siblings())
+    #US18
+    allErrors.extend(bhavin.siblingsShouldNotMarry())
+
     return allErrors
