@@ -13,7 +13,7 @@ class TestMethods(unittest.TestCase):
         self.assertEqual(len(albert.isBirthBeforeMarriage()), 19)
 
     def testBirthBeforeMarriage2(self):
-        self.assertIn("Anomoly US08: Birth date of Nathan /Wigley/(I21) occurs before the marriage date of his parents in Family (F2)", albert.isBirthBeforeMarriage())
+        self.assertIn("Anomoly US08: Birth date of Thomas /Drake/(I37) occurs before the marriage date of his parents in Family (F11)", albert.isBirthBeforeMarriage())
 
     def testBirthBeforeMarriage3(self):
         self.assertEqual(type(albert.isBirthBeforeMarriage()), list)
@@ -33,8 +33,13 @@ class TestMethods(unittest.TestCase):
         self.assertIn("Error: FAMILY: US09: Birth date of Brian /Frick/(I10) occurs more than 9 months after the death date of father (I1)", albert.isBirthBeforeParentsDeath())
 
     def testIsSibilingSpacing(self):
-        self.assertIn("Error: FAMILY: US13: Birth date of Diamond /Drake/(I28) is less than 8 months and more than 2 days apart from Ruby /Drake/(Ruby /Drake/)", albert.isSibilingSpacing())
+        self.assertIn("Error: FAMILY: US13: Birth date of Angelica /Drake/(I40) is less than 8 months and more than 2 days apart from Jessica /Drake/(Jessica /Drake/)", albert.isSibilingSpacing())
 
+    def testNonDescendentMarriage(self):
+        self.assertIn("Error: FAMILY: US17: Spouse cannot be a descendent of the family.", albert.nonDescendentMarriage())
+
+    def testIsUniqueFamilyBySpouse(self):
+        self.assertIn("Error: FAMILY: US24: Spouse I10 can not be in multiple families with the same marriage date.", albert.isUniqueFamilyBySpouse())
     #Albert - End
 
 
@@ -71,7 +76,7 @@ class TestMethods(unittest.TestCase):
 
     def test_US07lessThan150(self):
         lessThen150Strings = david.lessThen150()
-        self.assertIn("Error: INDIVIDUAL: US07: I22 Elena /Francis/ birth is 150 years or more before today", lessThen150Strings)
+        self.assertIn("Error: INDIVIDUAL: US07: I24 Elena /Francis/ birth is 150 years or more before today", lessThen150Strings)
 
     def test_US27orderSiblingsByAge(self):
         orderedSiblingsKey = list(david.orderSiblingsByAge())[0]
@@ -104,23 +109,23 @@ class TestMethods(unittest.TestCase):
     
     def test_numberOfDivorceError(self):
         divorceStrings = bhavin.divorceBeforeDeath()
-        self.assertIn("Error: FAMILY: US06: Divorce occurs after death of spouse I29 Death Date 2004-07-15 Divorce Date: 2009-10-07", divorceStrings)
+        self.assertIn("Error: FAMILY: US06: Divorce occurs after death of spouse I31 Death Date 2004-07-15 Divorce Date: 2009-10-07", divorceStrings)
 
     def test_numberOfMarriageError(self):
         marriageStrings = bhavin.marriageBeforeDeath()
-        self.assertIn("Error: FAMILY: US05: Marriage occurs after death of spouse I30 Death Date 1968-01-27 Marriage Date: 1969-12-15", marriageStrings)
+        self.assertIn("Error: FAMILY: US05: Marriage occurs after death of spouse I32 Death Date 1968-01-27 Marriage Date: 1969-12-15", marriageStrings)
 
     def test_numberOfUniqueIdError(self):
         uniqueIdStrings = bhavin.isIdUnique()
-        self.assertIn("Error: INDIVIDUAL: US22: I30 is not a unique ID", uniqueIdStrings)
+        self.assertIn("Error: INDIVIDUAL: US22: I32 is not a unique ID", uniqueIdStrings)
 
     def test_US15_lessThan15Siblings(self):
         siblingStrings = bhavin.lessThan15Siblings()
-        self.assertIn("Error: FAMILY: US15: There are 15 or more siblings in family F9", siblingStrings)
+        self.assertIn("Error: FAMILY: US15: There are 15 or more siblings in family F11", siblingStrings)
 
     def test_US18_siblingsShouldNotMarry(self):
         siblingsMarriedStrings = bhavin.siblingsShouldNotMarry()
-        self.assertIn("Error: FAMILY: US18: Siblings should not marry each other F9", siblingsMarriedStrings)
+        self.assertIn("Error: FAMILY: US18: Siblings should not marry each other F11", siblingsMarriedStrings)
 
     #Bhavin - End
     
@@ -146,13 +151,13 @@ class TestMethods(unittest.TestCase):
         self.assertIn("Error: FAMILY: US10: F8: Husband Birthdate 2050-04-06 is less than 14 years of Marriage Date 2009-05-07", lay.isMarriageAfter14())
 
     def test_US12_parentsOld(self):
-        self.assertIn("Error: FAMILY: US12: F9 Mother is greater than 60 years old, Mother id: I22", lay.isParentsOld())
+        self.assertIn("Error: FAMILY: US12: F2 Mother is greater than 60 years old, Mother id: I2", lay.isParentsOld())
 
     def test_US14_multipleBirths(self):
-        self.assertIn("Error: FAMILY: US14: F9 More than 5 siblings are born at the same time", lay.multipleBirths())
+        self.assertIn("Error: FAMILY: US14: F11 More than 5 siblings are born at the same time", lay.multipleBirths())
 
     def test_US16_sameLastNameMale(self):
-        self.assertIn("Error: FAMILY: US16: F9 Not all male members of the family have the same last name of Wigley", lay.sameLastNameMale())
+        self.assertIn("Error: FAMILY: US16: F11 Not all male members of the family have the same last name of Wigley", lay.sameLastNameMale())
     
     def test_US21_correctGenderRole(self):
         self.assertNotIn("Error", lay.correctGenderRole())

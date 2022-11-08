@@ -23,6 +23,10 @@ def errorData():
     allErrors.extend(albert.isBirthBeforeParentsDeath())
     #US13
     allErrors.extend(albert.isSibilingSpacing())
+    #US17
+    allErrors.extend(albert.nonDescendentMarriage())
+    #US24
+    allErrors.extend(albert.isUniqueFamilyBySpouse())
     #US06
     allErrors.extend(bhavin.divorceBeforeDeath())
     #US14
@@ -44,5 +48,6 @@ def errorData():
 
     #US07
     allErrors.extend(david.lessThen150())
+
 
     return allErrors
