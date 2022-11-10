@@ -49,5 +49,9 @@ def errorData():
     #US07
     allErrors.extend(david.lessThen150())
 
+    #US23
+    allErrors.extend(lay.uniqueNameBirth())
+    #US25
+    allErrors.extend(lay.uniqueFirstNameInFamily())
 
     return allErrors
