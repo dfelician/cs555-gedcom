@@ -10,8 +10,8 @@ def isIdUnique():
     people = data.personData()
     families = data.familyData()
 
-    errorStrings.append(uniqueIdChecker(people, "INDIVIDUAL"))
-    errorStrings.append(uniqueIdChecker(families, "FAMILY"))
+    uniqueIdChecker(people, "INDIVIDUAL", errorStrings)
+    uniqueIdChecker(families, "FAMILY", errorStrings)
 
     # created a method to check the ID of both Individuals and familiy records, refactoring code below for US22
     # 
@@ -35,7 +35,7 @@ def isIdUnique():
 
     return errorStrings
 
-def uniqueIdChecker(dataset, datasetType):
+def uniqueIdChecker(dataset, datasetType, errorStrings):
     duplicateIdList = []
     output = ""
     for i in range(1, len(dataset)):
@@ -45,8 +45,9 @@ def uniqueIdChecker(dataset, datasetType):
             errorId = str(dataset[i].id)
             errorId = errorId.replace("\n", "")
             output = "Error: " + datasetType + ": US22: " + errorId + " is not a unique ID"
+            errorStrings.append(output)
             
-    return output
+    return 
 
 def getDeaths():
     people = data.personData()
