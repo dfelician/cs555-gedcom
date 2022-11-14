@@ -140,3 +140,45 @@ def siblingsShouldNotMarry():
     return errorStrings
 
 #US 18 
+
+#US 30 List living married
+
+def livingMarriedCouples():
+    people = data.personData()
+    families = data.familyData()
+
+    couplesDict = {}
+    livingMarried = []
+
+    for fam in families:
+        if fam.divorced is "NA":
+            couplesDict[fam.husbandId] = fam.wifeId
+
+    for person in people:
+        if person.id in couplesDict.keys():
+            if person.alive is not True:
+                couplesDict.pop(person.id)
+
+    for person in people:
+        for key in couplesDict:
+            if person.id is couplesDict[key]:
+                if person.alive is not True:
+                    couplesDict.pop(person.id)
+
+    for person in people:
+        if person.id in couplesDict.keys():
+            livingMarried.append(person)
+        if person.id in couplesDict.values():
+            livingMarried.append(person)
+
+    return livingMarried
+
+
+
+#End of US 30
+
+
+
+#US 33 List orphans
+
+#End of US 33

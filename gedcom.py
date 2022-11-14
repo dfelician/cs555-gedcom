@@ -49,6 +49,10 @@ def main():
         out.write(str(table) + "\n")
     out.close()
 
+    livingMarriedCouplesTable = tables.listLivingMarriedCouples()
+    out = open("livingMarriedCouplesTable.txt", "w")
+    out.write(str(livingMarriedCouplesTable))
+    out.close()
 
 if __name__ == "__main__":
     main()
