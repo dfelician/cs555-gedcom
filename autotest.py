@@ -87,7 +87,7 @@ class TestMethods(unittest.TestCase):
 
     #Bhavin
     def test_oneDeath(self):
-        self.assertEqual(len(bhavin.getDeaths()), 3, "should be 3 death")
+        self.assertEqual(len(bhavin.getDeaths()), 5, "should be 5 deaths")
 
     def test_nameOfDeceased(self):
         self.assertEqual(bhavin.getDeaths()[0].name, "Paul /Frick/", "Paul /Frick/")
@@ -126,6 +126,16 @@ class TestMethods(unittest.TestCase):
     def test_US18_siblingsShouldNotMarry(self):
         siblingsMarriedStrings = bhavin.siblingsShouldNotMarry()
         self.assertIn("Error: FAMILY: US18: Siblings should not marry each other F11", siblingsMarriedStrings)
+
+    def test_US30(self):
+        livingMarriedCouples = bhavin.livingMarriedCouples()
+        for person in livingMarriedCouples:
+            self.assertNotIn("Rachel", person.name)
+
+    def test_US33(self):
+        orphans = bhavin.orphans()
+        for person in orphans:
+            self.assertNotIn("David", person.name)
 
     #Bhavin - End
     
