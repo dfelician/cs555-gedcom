@@ -181,4 +181,34 @@ def livingMarriedCouples():
 
 #US 33 List orphans
 
+def orphans():
+    people = data.personData()
+    families = data.familyData()
+
+    childrenDict = {}
+    orphanChildren = []
+
+    for person in people:
+        if person.alive and person.age < 18:
+            childrenDict[person.id] = []
+
+    for child in childrenDict:
+        for fam in families:
+            if child in fam.childrenIds:
+                childrenDict[child].append(fam.husbandId)
+                childrenDict[child].append(fam.wifeId)
+
+    for person in people:
+        for child in childrenDict:
+            if person.id in childrenDict[child] and person.alive:
+                childrenDict[child].remove(person.id)
+
+    for child in childrenDict:
+        if len(childrenDict[child]) > 1:
+            for person in people:
+                if child is person.id:
+                    orphanChildren.append(person)
+
+    return orphanChildren
+
 #End of US 33

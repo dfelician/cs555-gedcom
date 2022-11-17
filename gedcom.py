@@ -54,6 +54,11 @@ def main():
     out.write(str(livingMarriedCouplesTable))
     out.close()
 
+    orphansTable = tables.listOrphans()
+    out = open("orphansTable.txt", "w")
+    out.write(str(orphansTable))
+    out.close()
+
 if __name__ == "__main__":
     main()
 
