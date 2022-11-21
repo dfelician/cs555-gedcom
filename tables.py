@@ -123,8 +123,11 @@ def listLivingMarriedCouples():
     livingMarriedCouplesTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
 
     for person in livingMarriedCouples:
+        if len(person.spouse) == 0:
+            person.spouse = "NA"
+        if len(person.child) == 0:
+            person.child = "NA"
         livingMarriedCouplesTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
-
     return livingMarriedCouplesTable
 
 
@@ -133,7 +136,10 @@ def listOrphans():
     orphansTable = PrettyTable()
     orphansTable.title = "Orphans - US 33"
     orphansTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
-
     for person in orphans:
+        if len(person.spouse) == 0:
+            person.spouse = "NA"
+        if len(person.child) == 0:
+            person.child = "NA"
         orphansTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
     return orphansTable
