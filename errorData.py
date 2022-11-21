@@ -49,5 +49,11 @@ def errorData():
     #US07
     allErrors.extend(david.lessThen150())
 
+    #US02
+    allErrors.extend(david.birthBeforeMarriage())
+
+    #US03
+    allErrors.extend(david.birthBeforeDeath())
+
 
     return allErrors
