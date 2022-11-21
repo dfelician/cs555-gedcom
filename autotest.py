@@ -81,6 +81,15 @@ class TestMethods(unittest.TestCase):
     def test_US27orderSiblingsByAge(self):
         orderedSiblingsKey = list(david.orderSiblingsByAge())[0]
         self.assertEqual("F1", orderedSiblingsKey)
+
+
+    def test_US02birthBeforeMarriage(self):
+        errorStrings = david.birthBeforeMarriage()
+        self.assertIn("ERROR: INDIVIDUAL: US02: I23 Jessica /Drake/ birthday is after marriage date", errorStrings)
+
+    def test_US03birthBeforeDeath(self):
+        errorStrings = david.birthBeforeDeath()
+        # self.assertIn("ERROR: INDIVIDUAL: US02: I23 Jessica /Drake/ birthday is after marriage date", errorStrings)
     #David - End
     
 

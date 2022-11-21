@@ -76,9 +76,29 @@ def orderSiblingsByAge():
         for person in people:
             if len(person.child) != 0 and person.child[0] == key:
                 children.append(person)
-        children.sort(key=lambda x: x.age, reverse=True)
+        children.sort(key=lambda x: x.birthday, reverse=False)
         familyDict[key] = children
     return familyDict
 
 
+def birthBeforeDeath():
+    people = data.personData()
+    errorStrings = []
+    for person in people:
+        if person.death != "NA" and person.birthday > person.death:
+            output = "ERROR: INDIVIDUAL: US03: " + person.id + " " + person.name + " birthday is after death date"
+            errorStrings.append(output)
+    return errorStrings
 
+
+def birthBeforeMarriage():
+    families = data.familyData()
+    people = data.personData()
+    errorStrings = []
+    for family in families:
+        if family.married != "NA":
+            for person in people:
+                if (family.husbandId == person.id or family.wifeId == person.id) and family.married < person.birthday:
+                    output = "ERROR: INDIVIDUAL: US02: " + person.id + " " + person.name + " birthday is after marriage date"
+                    errorStrings.append(output)
+    return errorStrings
