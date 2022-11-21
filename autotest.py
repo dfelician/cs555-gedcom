@@ -10,7 +10,7 @@ import lay
 class TestMethods(unittest.TestCase):
     #Albert
     def testBirthBeforeMarriage1(self):
-        self.assertEqual(len(albert.isBirthBeforeMarriage()), 19)
+        self.assertEqual(len(albert.isBirthBeforeMarriage()), 20)
 
     def testBirthBeforeMarriage2(self):
         self.assertIn("Anomoly US08: Birth date of Thomas /Drake/(I37) occurs before the marriage date of his parents in Family (F11)", albert.isBirthBeforeMarriage())
@@ -96,7 +96,7 @@ class TestMethods(unittest.TestCase):
 
     #Bhavin
     def test_oneDeath(self):
-        self.assertEqual(len(bhavin.getDeaths()), 3, "should be 3 death")
+        self.assertEqual(len(bhavin.getDeaths()), 5, "should be 5 deaths")
 
     def test_nameOfDeceased(self):
         self.assertEqual(bhavin.getDeaths()[0].name, "Paul /Frick/", "Paul /Frick/")
@@ -136,6 +136,16 @@ class TestMethods(unittest.TestCase):
         siblingsMarriedStrings = bhavin.siblingsShouldNotMarry()
         self.assertIn("Error: FAMILY: US18: Siblings should not marry each other F11", siblingsMarriedStrings)
 
+    def test_US30(self):
+        livingMarriedCouples = bhavin.livingMarriedCouples()
+        for person in livingMarriedCouples:
+            self.assertNotIn("Rachel", person.name)
+
+    def test_US33(self):
+        orphans = bhavin.orphans()
+        for person in orphans:
+            self.assertNotIn("David", person.name)
+
     #Bhavin - End
 
 
@@ -169,7 +179,13 @@ class TestMethods(unittest.TestCase):
         self.assertIn("Error: FAMILY: US16: F11 Not all male members of the family have the same last name of Wigley", lay.sameLastNameMale())
 
     def test_US21_correctGenderRole(self):
-        self.assertNotIn("Error", lay.correctGenderRole())
+        self.assertNotIn("Error: FAMILY: US21: Family Husband is not gender Male, Husband id: I23", lay.correctGenderRole())
+    
+    def test_US23_uniqueNameBirth(self):
+        self.assertIn("Error: INDIVIDUAL: US23: More than 1 individuals with same name and birthdays Francis /Drake/2022-01-01", lay.uniqueNameBirth())
+    
+    def test_US25_uniqueFirstNameInFamily(self):
+        self.assertIn("Error: FAMILY: US25: More than 1 children with same name and birthday, family id F11 with children Francis /Drake/2022-01-01", lay.uniqueFirstNameInFamily())
     #Lay - End
 
 

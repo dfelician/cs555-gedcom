@@ -114,3 +114,26 @@ def orderedSiblingsTable():
                      person.child, person.spouse])
             siblingsTables.append(table)
     return siblingsTables
+
+
+def listLivingMarriedCouples():
+    livingMarriedCouples = bhavin.livingMarriedCouples()
+    livingMarriedCouplesTable = PrettyTable()
+    livingMarriedCouplesTable.title = "Living Married Couples - US30"
+    livingMarriedCouplesTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+
+    for person in livingMarriedCouples:
+        livingMarriedCouplesTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
+
+    return livingMarriedCouplesTable
+
+
+def listOrphans():
+    orphans = bhavin.orphans()
+    orphansTable = PrettyTable()
+    orphansTable.title = "Orphans - US 33"
+    orphansTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+
+    for person in orphans:
+        orphansTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
+    return orphansTable
