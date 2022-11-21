@@ -89,14 +89,14 @@ class TestMethods(unittest.TestCase):
 
     def test_US03birthBeforeDeath(self):
         errorStrings = david.birthBeforeDeath()
-        # self.assertIn("ERROR: INDIVIDUAL: US02: I23 Jessica /Drake/ birthday is after marriage date", errorStrings)
+        self.assertIn("ERROR: INDIVIDUAL: US03: I26 Sully /Drake/ birthday is after death date", errorStrings)
     #David - End
 
 
 
     #Bhavin
     def test_oneDeath(self):
-        self.assertEqual(len(bhavin.getDeaths()), 5, "should be 5 deaths")
+        self.assertEqual(len(bhavin.getDeaths()), 6, "should be 6 deaths")
 
     def test_nameOfDeceased(self):
         self.assertEqual(bhavin.getDeaths()[0].name, "Paul /Frick/", "Paul /Frick/")
