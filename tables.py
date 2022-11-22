@@ -123,6 +123,10 @@ def listMultipleBirth():
     multiBirthTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
 
     for person in multiBirth:
+        if len(person.spouse) == 0:
+            person.spouse = "NA"
+        if len(person.child) == 0:
+            person.child = "NA"
         multiBirthTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
 
     return multiBirthTable
@@ -130,10 +134,14 @@ def listMultipleBirth():
 def listLargeAgeGap():
     largeAgeGap = albert.isLargeAgeDiff()
     largeAgeGapTable = PrettyTable()
-    largeAgeGapTable.title = "Large Age Gap - US 32"
+    largeAgeGapTable.title = "Large Age Gap - US 34"
     largeAgeGapTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
 
     for person in largeAgeGap:
+        if len(person[0].child) == 0:
+            person[0].child = "NA"
+        if len(person[1].child) == 0:
+            person[1].child = "NA"
         largeAgeGapTable.add_row([person[0].id, person[0].name, person[0].gender, person[0].birthday, person[0].age, person[0].alive, person[0].death, person[0].child, person[0].spouse])
         largeAgeGapTable.add_row([person[1].id, person[1].name, person[1].gender, person[1].birthday, person[1].age, person[1].alive, person[1].death, person[1].child, person[1].spouse])
 

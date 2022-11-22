@@ -28,7 +28,7 @@
 | I23 |   Jessica /Drake/   |   F    | 2022-06-06 |  0  |  True |     NA     | ['F11'] |    ['F10']     |
 | I24 |   Elena /Francis/   |   F    | 1850-01-01 | 172 |  True |     NA     |    NA   | ['F11', 'F12'] |
 | I25 |   Francis /Drake/   |   M    | 2022-01-01 |  0  |  True |     NA     | ['F11'] |       NA       |
-| I26 |    Sully /Drake/    |   M    | 2022-01-01 | -12 | False | 2010-09-13 | ['F11'] |       NA       |
+| I26 |    Sully /Drake/    |   M    | 2023-01-01 |  -1 | False | 2022-11-21 | ['F11'] |       NA       |
 | I27 |    Chloe /Drake/    |   F    | 2022-01-01 |  0  |  True |     NA     | ['F11'] |       NA       |
 | I28 |    Elenor /Drake/   |   F    | 2022-01-01 |  0  |  True |     NA     | ['F11'] |       NA       |
 | I29 |   Columbus /Drake/  |   M    | 2022-01-01 |  0  |  True |     NA     | ['F11'] |       NA       |
