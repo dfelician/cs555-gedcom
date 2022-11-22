@@ -10,14 +10,14 @@ import lay
 class TestMethods(unittest.TestCase):
     #Albert
     def testBirthBeforeMarriage1(self):
-        self.assertEqual(len(albert.isBirthBeforeMarriage()), 19)
+        self.assertEqual(len(albert.isBirthBeforeMarriage()), 20)
 
     def testBirthBeforeMarriage2(self):
         self.assertIn("Anomoly US08: Birth date of Thomas /Drake/(I37) occurs before the marriage date of his parents in Family (F11)", albert.isBirthBeforeMarriage())
 
     def testBirthBeforeMarriage3(self):
         self.assertEqual(type(albert.isBirthBeforeMarriage()), list)
-    
+
     def testBirthBeforeMarriage4(self):
         if (len(albert.isBirthBeforeMarriage()) > 0):
              self.assertEqual(type(albert.isBirthBeforeMarriage()[0]), str)
@@ -46,7 +46,7 @@ class TestMethods(unittest.TestCase):
 
     #David
     def test_lessThan30Days(self):
-        self.assertTrue(david.isWithin30Days(date(2022, 10, 30)))
+        self.assertTrue(david.isWithin30Days(date(2022, 11, 21)))
 
     def test_moreThan30Days(self):
         self.assertFalse(david.isWithin30Days(date(2020, 10, 10)))
@@ -61,7 +61,7 @@ class TestMethods(unittest.TestCase):
         recentBirths = david.getRecentBirths()
         for person in recentBirths:
             self.assertEqual(type(person), data.Person)
-    
+
     def test_US27isInt(self):
         people = data.personData()
         for person in people:
@@ -70,9 +70,9 @@ class TestMethods(unittest.TestCase):
     def test_US31correctPerson(self):
         singlePeople = david.getLivingSingle()
         self.assertEqual(singlePeople[0].name, "Courtney /Reynolds/")
-    
+
     def test_US36lessThan30Days(self):
-        self.assertTrue(david.isWithin30Days(date(2022, 10, 10)))
+        self.assertTrue(david.isWithin30Days(date(2022, 11, 21)))
 
     def test_US07lessThan150(self):
         lessThen150Strings = david.lessThen150()
@@ -81,17 +81,26 @@ class TestMethods(unittest.TestCase):
     def test_US27orderSiblingsByAge(self):
         orderedSiblingsKey = list(david.orderSiblingsByAge())[0]
         self.assertEqual("F1", orderedSiblingsKey)
+
+
+    def test_US02birthBeforeMarriage(self):
+        errorStrings = david.birthBeforeMarriage()
+        self.assertIn("ERROR: INDIVIDUAL: US02: I23 Jessica /Drake/ birthday is after marriage date", errorStrings)
+
+    def test_US03birthBeforeDeath(self):
+        errorStrings = david.birthBeforeDeath()
+        self.assertIn("ERROR: INDIVIDUAL: US03: I26 Sully /Drake/ birthday is after death date", errorStrings)
     #David - End
-    
+
 
 
     #Bhavin
     def test_oneDeath(self):
-        self.assertEqual(len(bhavin.getDeaths()), 3, "should be 3 death")
+        self.assertEqual(len(bhavin.getDeaths()), 6, "should be 6 deaths")
 
     def test_nameOfDeceased(self):
         self.assertEqual(bhavin.getDeaths()[0].name, "Paul /Frick/", "Paul /Frick/")
-        
+
     def test_checkIfNameExists(self):
         deaths = bhavin.getDeaths()
         # for person in deaths:
@@ -106,7 +115,7 @@ class TestMethods(unittest.TestCase):
         deaths = bhavin.getDeaths()
         for person in deaths:
             self.assertFalse(person.alive, "Should be False")
-    
+
     def test_numberOfDivorceError(self):
         divorceStrings = bhavin.divorceBeforeDeath()
         self.assertIn("Error: FAMILY: US06: Divorce occurs after death of spouse I31 Death Date 2004-07-15 Divorce Date: 2009-10-07", divorceStrings)
@@ -127,8 +136,18 @@ class TestMethods(unittest.TestCase):
         siblingsMarriedStrings = bhavin.siblingsShouldNotMarry()
         self.assertIn("Error: FAMILY: US18: Siblings should not marry each other F11", siblingsMarriedStrings)
 
+    def test_US30(self):
+        livingMarriedCouples = bhavin.livingMarriedCouples()
+        for person in livingMarriedCouples:
+            self.assertNotIn("Rachel", person.name)
+
+    def test_US33(self):
+        orphans = bhavin.orphans()
+        for person in orphans:
+            self.assertNotIn("David", person.name)
+
     #Bhavin - End
-    
+
 
 
     #Lay
@@ -146,7 +165,7 @@ class TestMethods(unittest.TestCase):
 
     def test_US1_test5_isDateValid(self):
         self.assertIn("Error: INDIVIDUAL: US01: I10: Birthday 2050-04-06 occurs in the future" ,lay.isDateValid())
-    
+
     def test_US10_marriageAfter14(self):
         self.assertIn("Error: FAMILY: US10: F8: Husband Birthdate 2050-04-06 is less than 14 years of Marriage Date 2009-05-07", lay.isMarriageAfter14())
 
@@ -158,9 +177,15 @@ class TestMethods(unittest.TestCase):
 
     def test_US16_sameLastNameMale(self):
         self.assertIn("Error: FAMILY: US16: F11 Not all male members of the family have the same last name of Wigley", lay.sameLastNameMale())
-    
+
     def test_US21_correctGenderRole(self):
-        self.assertNotIn("Error", lay.correctGenderRole())
+        self.assertNotIn("Error: FAMILY: US21: Family Husband is not gender Male, Husband id: I23", lay.correctGenderRole())
+    
+    def test_US23_uniqueNameBirth(self):
+        self.assertIn("Error: INDIVIDUAL: US23: More than 1 individuals with same name and birthdays Francis /Drake/2022-01-01", lay.uniqueNameBirth())
+    
+    def test_US25_uniqueFirstNameInFamily(self):
+        self.assertIn("Error: FAMILY: US25: More than 1 children with same name and birthday, family id F11 with children Francis /Drake/2022-01-01", lay.uniqueFirstNameInFamily())
     #Lay - End
 
 

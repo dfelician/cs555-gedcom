@@ -10,8 +10,8 @@ def isIdUnique():
     people = data.personData()
     families = data.familyData()
 
-    errorStrings.append(uniqueIdChecker(people, "INDIVIDUAL"))
-    errorStrings.append(uniqueIdChecker(families, "FAMILY"))
+    uniqueIdChecker(people, "INDIVIDUAL", errorStrings)
+    uniqueIdChecker(families, "FAMILY", errorStrings)
 
     # created a method to check the ID of both Individuals and familiy records, refactoring code below for US22
     # 
@@ -35,7 +35,7 @@ def isIdUnique():
 
     return errorStrings
 
-def uniqueIdChecker(dataset, datasetType):
+def uniqueIdChecker(dataset, datasetType, errorStrings):
     duplicateIdList = []
     output = ""
     for i in range(1, len(dataset)):
@@ -45,8 +45,9 @@ def uniqueIdChecker(dataset, datasetType):
             errorId = str(dataset[i].id)
             errorId = errorId.replace("\n", "")
             output = "Error: " + datasetType + ": US22: " + errorId + " is not a unique ID"
+            errorStrings.append(output)
             
-    return output
+    return 
 
 def getDeaths():
     people = data.personData()
@@ -139,3 +140,75 @@ def siblingsShouldNotMarry():
     return errorStrings
 
 #US 18 
+
+#US 30 List living married
+
+def livingMarriedCouples():
+    people = data.personData()
+    families = data.familyData()
+
+    couplesDict = {}
+    livingMarried = []
+
+    for fam in families:
+        if fam.divorced is "NA":
+            couplesDict[fam.husbandId] = fam.wifeId
+
+    for person in people:
+        if person.id in couplesDict.keys():
+            if person.alive is not True:
+                couplesDict.pop(person.id)
+
+    for person in people:
+        for key in couplesDict:
+            if person.id is couplesDict[key]:
+                if person.alive is not True:
+                    couplesDict.pop(person.id)
+
+    for person in people:
+        if person.id in couplesDict.keys():
+            livingMarried.append(person)
+        if person.id in couplesDict.values():
+            livingMarried.append(person)
+
+    return livingMarried
+
+
+
+#End of US 30
+
+
+
+#US 33 List orphans
+
+def orphans():
+    people = data.personData()
+    families = data.familyData()
+
+    childrenDict = {}
+    orphanChildren = []
+
+    for person in people:
+        if person.alive and person.age < 18:
+            childrenDict[person.id] = []
+
+    for child in childrenDict:
+        for fam in families:
+            if child in fam.childrenIds:
+                childrenDict[child].append(fam.husbandId)
+                childrenDict[child].append(fam.wifeId)
+
+    for person in people:
+        for child in childrenDict:
+            if person.id in childrenDict[child] and person.alive:
+                childrenDict[child].remove(person.id)
+
+    for child in childrenDict:
+        if len(childrenDict[child]) > 1:
+            for person in people:
+                if child is person.id:
+                    orphanChildren.append(person)
+
+    return orphanChildren
+
+#End of US 33
