@@ -49,6 +49,16 @@ def main():
         out.write(str(table) + "\n")
     out.close()
 
+    multiBirthTable = tables.listMultipleBirth()
+    out = open("multipleBirthsTable.txt", "w")
+    out.write(str(multiBirthTable))
+    out.close()
+
+    largeAgeGapTable = tables.listLargeAgeGap()
+    out = open("largeAgeGapTable.txt", "w")
+    out.write(str(largeAgeGapTable))
+    out.close()
+
 
 if __name__ == "__main__":
     main()
