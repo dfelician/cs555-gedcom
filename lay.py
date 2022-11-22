@@ -163,5 +163,53 @@ def correctGenderRole():
                 errorStrings.append(output)
         
     return errorStrings
- 
 
+def uniqueNameBirth():
+    errorStrings = []
+    people = data.personData()
+
+    uniquePeopleDict = {}
+
+    for person in people:
+        key = person.name + str(person.birthday)
+        if key not in uniquePeopleDict:
+            uniquePeopleDict[key] = 1
+        else:
+            uniquePeopleDict[key] += 1
+    
+    for key in uniquePeopleDict:
+        #print(key)
+        #print(uniquePeopleDict[key])
+        if uniquePeopleDict[key] > 1:
+            output = 'Error: INDIVIDUAL: US23: More than 1 individuals with same name and birthdays ' + key
+            errorStrings.append(output) 
+
+    return errorStrings
+ 
+def uniqueFirstNameInFamily():
+    errorStrings = []
+    families = data.familyData()
+    people = data.personData()
+
+    for fam in families:
+        childrenIds = fam.childrenIds
+        uniqueChildrenDict = {}
+
+        for person in people:
+            if person.id in childrenIds:
+                key = person.name + str(person.birthday)
+                if key not in uniqueChildrenDict:
+                    uniqueChildrenDict[key] = 1
+                else:
+                    uniqueChildrenDict[key] += 1
+        
+        for key in uniqueChildrenDict:
+            #print(key)
+            #print(uniqueChildrenDict[key])
+            if uniqueChildrenDict[key] > 1:
+                output = 'Error: FAMILY: US25: More than 1 children with same name and birthday, family id ' + fam.id + ' with children ' +  key
+                errorStrings.append(output)
+
+
+
+    return errorStrings

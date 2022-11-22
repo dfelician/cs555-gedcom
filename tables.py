@@ -138,3 +138,31 @@ def listLargeAgeGap():
         largeAgeGapTable.add_row([person[1].id, person[1].name, person[1].gender, person[1].birthday, person[1].age, person[1].alive, person[1].death, person[1].child, person[1].spouse])
 
     return largeAgeGapTable
+
+def listLivingMarriedCouples():
+    livingMarriedCouples = bhavin.livingMarriedCouples()
+    livingMarriedCouplesTable = PrettyTable()
+    livingMarriedCouplesTable.title = "Living Married Couples - US30"
+    livingMarriedCouplesTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+
+    for person in livingMarriedCouples:
+        if len(person.spouse) == 0:
+            person.spouse = "NA"
+        if len(person.child) == 0:
+            person.child = "NA"
+        livingMarriedCouplesTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
+    return livingMarriedCouplesTable
+
+
+def listOrphans():
+    orphans = bhavin.orphans()
+    orphansTable = PrettyTable()
+    orphansTable.title = "Orphans - US 33"
+    orphansTable.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+    for person in orphans:
+        if len(person.spouse) == 0:
+            person.spouse = "NA"
+        if len(person.child) == 0:
+            person.child = "NA"
+        orphansTable.add_row([person.id, person.name, person.gender, person.birthday, person.age, person.alive, person.death, person.child, person.spouse])
+    return orphansTable

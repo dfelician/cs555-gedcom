@@ -59,6 +59,15 @@ def main():
     out.write(str(largeAgeGapTable))
     out.close()
 
+    livingMarriedCouplesTable = tables.listLivingMarriedCouples()
+    out = open("livingMarriedCouplesTable.txt", "w")
+    out.write(str(livingMarriedCouplesTable))
+    out.close()
+
+    orphansTable = tables.listOrphans()
+    out = open("orphansTable.txt", "w")
+    out.write(str(orphansTable))
+    out.close()
 
 if __name__ == "__main__":
     main()
