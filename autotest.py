@@ -10,7 +10,7 @@ import lay
 class TestMethods(unittest.TestCase):
     #Albert
     def testBirthBeforeMarriage1(self):
-        self.assertEqual(len(albert.isBirthBeforeMarriage()), 20)
+        self.assertEqual(len(albert.isBirthBeforeMarriage()), 19)
 
     def testBirthBeforeMarriage2(self):
         self.assertIn("Anomoly US08: Birth date of Thomas /Drake/(I37) occurs before the marriage date of his parents in Family (F11)", albert.isBirthBeforeMarriage())
@@ -40,6 +40,16 @@ class TestMethods(unittest.TestCase):
 
     def testIsUniqueFamilyBySpouse(self):
         self.assertIn("Error: FAMILY: US24: Spouse I10 can not be in multiple families with the same marriage date.", albert.isUniqueFamilyBySpouse())
+
+    def testMultipleBirthTable(self):
+        multiBirthList = albert.isMultipleBirth()
+        self.assertIn("Columbus", multiBirthList[3].name)
+
+    def testLargeAgeGapTable(self):
+        largeAgeGapList = albert.isLargeAgeDiff()
+        for person in largeAgeGapList:
+            self.assertNotIn("Diamond", person[0].name)
+            self.assertNotIn("Diamond", person[1].name)
     #Albert - End
 
 
@@ -152,7 +162,7 @@ class TestMethods(unittest.TestCase):
 
     #Lay
     def test_US1_isDateValid(self):
-        self.assertEqual(len(lay.isDateValid()), 1)
+        self.assertEqual(len(lay.isDateValid()), 2)
 
     def test_US1_test2_isDateValid(self):
         self.assertEqual(lay.isDateValid()[0], "Error: INDIVIDUAL: US01: I10: Birthday 2050-04-06 occurs in the future")

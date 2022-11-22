@@ -157,3 +157,45 @@ def isUniqueFamilyBySpouse():
         marriageDict[fam.married].append(wifeId)
         
     return errorStrings
+
+# US32
+def isMultipleBirth():
+    families = data.familyData()
+    people = data.personData()
+    personDict = {}
+    birthdayDict = {}
+    multipleBirthList = []
+
+    for person in people:
+        personDict[person.id] = person
+    for fam in families:
+        childrenIds = fam.childrenIds
+        for id in childrenIds:
+            if personDict[id].birthday not in birthdayDict:
+                birthdayDict[personDict[id].birthday] = []
+                
+            birthdayDict[personDict[id].birthday].append(personDict[id])
+
+    for key in birthdayDict:
+        if len(birthdayDict[key]) > 1:
+            multipleBirthList.extend(birthdayDict[key])
+
+    return multipleBirthList
+
+# US34
+def isLargeAgeDiff():
+    families = data.familyData()
+    people = data.personData()
+    personDict = {}
+    couplesList = []
+
+    for person in people:
+        personDict[person.id] = person
+    for fam in families:
+        husbandId = fam.husbandId
+        wifeId = fam.wifeId
+        ageGap = abs(personDict[husbandId].birthday - personDict[wifeId].birthday)
+        if ageGap.days > 730:
+            couplesList.append((personDict[husbandId], personDict[wifeId]))
+            
+    return couplesList
